@@ -5,105 +5,128 @@ import { motion } from 'framer-motion';
 import { portfolioData } from '@/data/portfolio';
 import { StarField } from './StarField';
 import { headlineLineVariant } from '@/lib/animations';
-import { ArrowDown } from 'lucide-react';
+import { ArrowUpRight } from 'lucide-react';
 
 export const Hero: React.FC = () => {
+  const { hero } = portfolioData;
+
   return (
-    <section className="relative min-h-[92vh] flex flex-col justify-between pt-32 sm:pt-36 md:pt-44 lg:pt-48 pb-14 md:pb-16 overflow-hidden bg-[#111315]">
+    <section className="relative min-h-[92vh] flex flex-col justify-between pt-28 pb-14 md:pt-36 md:pb-16 overflow-hidden bg-[#111315]">
       {/* Subtle Atmospheric Star Field Canvas */}
       <StarField />
 
       {/* Main Content Container */}
       <div className="relative z-10 max-w-content mx-auto w-full px-5 md:px-16 flex-1 flex flex-col justify-between">
-        {/* Core Hero Content */}
-        <div className="my-auto py-2 md:py-6">
+        {/* Top Eyebrow Row */}
+        <motion.div
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+          className="flex items-center justify-between text-xs text-[#929397] tracking-wider uppercase mb-10 md:mb-16 pb-4 border-b border-[#303236]/40"
+        >
+          <div className="flex items-center gap-2.5">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#AFA4FF]" />
+            <span className="font-mono text-[11px] sm:text-xs tracking-widest text-[#F1F0EC]/90 font-medium">
+              {hero.badge}
+            </span>
+          </div>
+          <a
+            href="#contact"
+            className="font-mono text-[11px] sm:text-xs text-[#AFA4FF] hover:text-[#C2BAFF] tracking-widest flex items-center gap-1 transition-colors group"
+          >
+            <span>{hero.availabilityBadge}</span>
+            <ArrowUpRight
+              size={13}
+              className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"
+            />
+          </a>
+        </motion.div>
+
+        {/* Central Core: Headline, Description & CTAs */}
+        <div className="my-auto py-4 md:py-8 space-y-8 md:space-y-12">
           {/* Main Headline */}
           <div className="max-w-5xl">
             <motion.h1
               variants={headlineLineVariant}
               initial="hidden"
               animate="visible"
-              className="font-serif text-[3rem] sm:text-6xl md:text-7xl lg:text-[5.5rem] xl:text-[6.5rem] leading-[1.04] tracking-[-0.015em] text-[#F1F0EC]"
+              className="font-serif text-[2.75rem] sm:text-6xl md:text-7xl lg:text-[5.25rem] xl:text-[6rem] leading-[1.05] tracking-[-0.015em] text-[#F1F0EC]"
             >
-              <span>{portfolioData.hero.headline.line1}</span>
-              <span className="italic font-normal text-[#AFA4FF] inline-block ml-1.5 sm:ml-2.5">
-                {portfolioData.hero.headline.highlight}
+              <span>{hero.headline.line1}</span>
+              <br />
+              <span>{hero.headline.line2}</span>
+              <br />
+              <span className="italic font-normal text-[#AFA4FF]">
+                {hero.headline.highlight}
               </span>
-              <br />
-              <span>{portfolioData.hero.headline.line2}</span>
-              <br />
-              <span>{portfolioData.hero.headline.line3}</span>
             </motion.h1>
           </div>
 
-          {/* Editorial Subtext & Typographic Metadata Highlights */}
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-end mt-12 md:mt-20">
-            {/* Supporting Narrative (7 cols) */}
-            <motion.div
+          {/* Supporting Narrative & CTAs */}
+          <div className="space-y-8 max-w-2xl">
+            <motion.p
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-              className="lg:col-span-7"
+              className="text-base sm:text-lg md:text-xl text-[#929397] font-normal leading-relaxed"
             >
-              <p className="text-base sm:text-lg md:text-xl text-[#929397] font-normal leading-relaxed max-w-xl">
-                {portfolioData.hero.subtext}
-              </p>
-            </motion.div>
+              {hero.subtext}
+            </motion.p>
 
-            {/* Typographic Stats & Availability (5 cols) */}
+            {/* CTAs */}
             <motion.div
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
-              className="lg:col-span-5 grid grid-cols-2 gap-8 lg:pl-8 border-t lg:border-t-0 lg:border-l border-[#303236]/60 pt-6 lg:pt-0"
+              className="flex flex-wrap items-center gap-4 sm:gap-6 pt-2"
             >
-              <div>
-                <span className="block text-[10px] font-mono uppercase text-[#929397]/70 tracking-widest mb-1.5">
-                  EXPERIENCE
-                </span>
-                <span className="font-serif text-2xl sm:text-3xl md:text-4xl text-[#F1F0EC] font-light">
-                  3+ Years
-                </span>
-              </div>
+              <a
+                href={hero.ctas.primary.href}
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-full text-xs sm:text-sm font-medium bg-[#F1F0EC] text-[#111315] hover:bg-white hover:shadow-[0_0_20px_rgba(241,240,236,0.25)] transition-all duration-200 group"
+              >
+                <span>{hero.ctas.primary.label}</span>
+                <ArrowUpRight
+                  size={15}
+                  className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"
+                />
+              </a>
 
-              <div>
-                <span className="block text-[10px] font-mono uppercase text-[#929397]/70 tracking-widest mb-1.5">
-                  AVAILABILITY
-                </span>
-                <span className="font-serif text-2xl sm:text-3xl text-[#AFA4FF] font-light flex items-center gap-2">
-                  <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse inline-block" />
-                  Open to Work
-                </span>
-              </div>
+              <a
+                href={hero.ctas.secondary.href}
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-full text-xs sm:text-sm font-medium text-[#F1F0EC] border border-[#303236] hover:border-[#AFA4FF]/60 hover:bg-[#191B1E]/40 transition-all duration-200 group"
+              >
+                <span>{hero.ctas.secondary.label}</span>
+                <ArrowUpRight
+                  size={15}
+                  className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform text-[#929397] group-hover:text-[#F1F0EC]"
+                />
+              </a>
             </motion.div>
           </div>
         </div>
 
-        {/* Refined Bottom Metadata Row */}
+        {/* Bottom Proof / Metadata Row */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.4 }}
-          className="mt-14 md:mt-20 pt-6 border-t border-[#303236]/50 flex flex-col sm:flex-row sm:items-center justify-between gap-4 text-xs font-mono text-[#929397]/80"
+          className="mt-12 md:mt-16 pt-6 border-t border-[#303236]/50 grid grid-cols-1 sm:grid-cols-3 gap-6 text-xs"
         >
-          <div className="flex items-center gap-6">
-            <span className="text-[#F1F0EC]/90">
-              LOCATION: Surat, Gujarat, India
-            </span>
-            <span className="hidden sm:inline text-[#303236]">·</span>
-            <span className="hidden sm:inline">REMOTE WORLDWIDE</span>
-          </div>
-
-          <a
-            href="#about"
-            className="inline-flex items-center gap-1.5 text-xs text-[#929397] hover:text-[#F1F0EC] transition-colors group"
-          >
-            <span>Explore overview</span>
-            <ArrowDown
-              size={12}
-              className="group-hover:translate-y-0.5 transition-transform"
-            />
-          </a>
+          {hero.proofPoints.map((point) => (
+            <div key={point.label} className="space-y-1">
+              <div className="flex items-center gap-2">
+                {point.isStatus && (
+                  <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+                )}
+                <span className="font-serif text-2xl sm:text-3xl text-[#F1F0EC] font-normal">
+                  {point.value}
+                </span>
+              </div>
+              <span className="text-xs text-[#929397] block font-normal">
+                {point.label}
+              </span>
+            </div>
+          ))}
         </motion.div>
       </div>
     </section>

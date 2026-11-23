@@ -147,7 +147,7 @@ export const Header: React.FC = () => {
               {portfolioData.contact.email}
             </a>
             <p className="text-[11px] text-[#929397]/60 mt-4">
-              {portfolioData.hero.metadata[0].value}
+              Surat, Gujarat, India · Open to opportunities
             </p>
           </div>
         </div>

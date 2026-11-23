@@ -75,18 +75,39 @@ export const portfolioData = {
     },
   },
   hero: {
+    badge: "UI/UX & PRODUCT DESIGNER",
+    availabilityBadge: "AVAILABLE FOR OPPORTUNITIES",
     headline: {
-      line1: "Designer based in ",
-      highlight: "Surat.",
-      line2: "Shaping digital products",
-      line3: "with clarity and character.",
+      line1: "I turn complex product",
+      line2: "requirements into",
+      highlight: "clear digital experiences.",
     },
     subtext:
-      "UI/UX & Product Designer with 3+ years of experience designing mobile and web products. Experienced in turning complex business requirements into intuitive, technically feasible interfaces.",
-    metadata: [
-      { label: "LOCATION", value: "Surat, Gujarat, India" },
-      { label: "EXPERIENCE", value: "3+ Years" },
-      { label: "AVAILABILITY", value: "Open to Work · Full-Time & Part-Time" },
+      "I'm Ayush Rokad. With 3+ years of experience across mobile and web products, I shape product features, user flows and interfaces — bringing user needs, business goals and technical realities together.",
+    ctas: {
+      primary: {
+        label: "Explore my experience",
+        href: "#work",
+      },
+      secondary: {
+        label: "Let's talk",
+        href: "#contact",
+      },
+    },
+    proofPoints: [
+      {
+        value: "3+",
+        label: "Years of experience",
+      },
+      {
+        value: "Mobile & Web",
+        label: "Product experience",
+      },
+      {
+        value: "Open",
+        label: "Full-time & part-time",
+        isStatus: true,
+      },
     ],
   },
   about: {
