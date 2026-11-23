@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from 'next';
 import './globals.css';
 import { portfolioData } from '@/data/portfolio';
+import { Analytics } from '@vercel/analytics/next';
 
 export const viewport: Viewport = {
   themeColor: '#111315',
@@ -100,6 +101,7 @@ export default function RootLayout({
       </head>
       <body className="bg-[#111315] text-[#F1F0EC] antialiased selection:bg-[#AFA4FF]/30 selection:text-white">
         {children}
+        <Analytics />
       </body>
     </html>
   );
