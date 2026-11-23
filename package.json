@@ -3,9 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "node -e \"process.env.NEXT_TEST_WASM_DIR=require('path').resolve('./node_modules/@next/swc-wasm-nodejs'); require('child_process').execSync('npx.cmd next dev', { stdio: 'inherit', env: process.env });\"",
-    "build": "node -e \"process.env.NEXT_TEST_WASM_DIR=require('path').resolve('./node_modules/@next/swc-wasm-nodejs'); require('child_process').execSync('npx.cmd next build', { stdio: 'inherit', env: process.env });\"",
-    "start": "node -e \"process.env.NEXT_TEST_WASM_DIR=require('path').resolve('./node_modules/@next/swc-wasm-nodejs'); require('child_process').execSync('npx.cmd next start', { stdio: 'inherit', env: process.env });\"",
+    "dev": "node -e \"if (process.platform === 'win32') process.env.NEXT_TEST_WASM_DIR = require('path').resolve('./node_modules/@next/swc-wasm-nodejs'); require('child_process').execSync((process.platform === 'win32' ? 'npx.cmd' : 'npx') + ' next dev', { stdio: 'inherit', env: process.env });\"",
+    "build": "node -e \"if (process.platform === 'win32') process.env.NEXT_TEST_WASM_DIR = require('path').resolve('./node_modules/@next/swc-wasm-nodejs'); require('child_process').execSync((process.platform === 'win32' ? 'npx.cmd' : 'npx') + ' next build', { stdio: 'inherit', env: process.env });\"",
+    "start": "node -e \"if (process.platform === 'win32') process.env.NEXT_TEST_WASM_DIR = require('path').resolve('./node_modules/@next/swc-wasm-nodejs'); require('child_process').execSync((process.platform === 'win32' ? 'npx.cmd' : 'npx') + ' next start', { stdio: 'inherit', env: process.env });\"",
     "lint": "next lint"
   },
   "dependencies": {
