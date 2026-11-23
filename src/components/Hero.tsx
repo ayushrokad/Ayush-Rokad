@@ -9,42 +9,24 @@ import { ArrowDown } from 'lucide-react';
 
 export const Hero: React.FC = () => {
   return (
-    <section className="relative min-h-[92vh] flex flex-col justify-between pt-28 pb-14 md:pt-36 md:pb-16 overflow-hidden bg-[#111315]">
+    <section className="relative min-h-[92vh] flex flex-col justify-between pt-32 sm:pt-36 md:pt-44 lg:pt-48 pb-14 md:pb-16 overflow-hidden bg-[#111315]">
       {/* Subtle Atmospheric Star Field Canvas */}
       <StarField />
 
       {/* Main Content Container */}
       <div className="relative z-10 max-w-content mx-auto w-full px-5 md:px-16 flex-1 flex flex-col justify-between">
-        {/* Top Eyebrow row */}
-        <motion.div
-          initial={{ opacity: 0, y: -10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-          className="flex items-center justify-between text-xs text-[#929397] tracking-wider uppercase mb-10 md:mb-16 pb-4 border-b border-[#303236]/40"
-        >
-          <div className="flex items-center gap-2.5">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#AFA4FF]" />
-            <span className="font-mono text-[11px] sm:text-xs tracking-widest text-[#F1F0EC]/90 font-medium">
-              {portfolioData.hero.badge}
-            </span>
-          </div>
-          <span className="font-mono text-[11px] sm:text-xs text-[#929397]/80 tracking-widest">
-            {portfolioData.hero.locationYear}
-          </span>
-        </motion.div>
-
-        {/* Spacious Typography-Led Core */}
-        <div className="my-auto py-4 md:py-8 space-y-12 md:space-y-16">
+        {/* Core Hero Content */}
+        <div className="my-auto py-2 md:py-6">
           {/* Main Headline */}
           <div className="max-w-5xl">
             <motion.h1
               variants={headlineLineVariant}
               initial="hidden"
               animate="visible"
-              className="font-serif text-[2.85rem] sm:text-6xl md:text-7xl lg:text-[5.5rem] xl:text-[6.25rem] leading-[1.04] tracking-[-0.015em] text-[#F1F0EC]"
+              className="font-serif text-[3rem] sm:text-6xl md:text-7xl lg:text-[5.5rem] xl:text-[6.5rem] leading-[1.04] tracking-[-0.015em] text-[#F1F0EC]"
             >
               <span>{portfolioData.hero.headline.line1}</span>
-              <span className="italic font-normal text-[#AFA4FF] inline-block ml-1 sm:ml-2">
+              <span className="italic font-normal text-[#AFA4FF] inline-block ml-1.5 sm:ml-2.5">
                 {portfolioData.hero.headline.highlight}
               </span>
               <br />
@@ -55,7 +37,7 @@ export const Hero: React.FC = () => {
           </div>
 
           {/* Editorial Subtext & Typographic Metadata Highlights */}
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-end pt-4 md:pt-6">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-end mt-12 md:mt-20">
             {/* Supporting Narrative (7 cols) */}
             <motion.div
               initial={{ opacity: 0, y: 16 }}
@@ -73,7 +55,7 @@ export const Hero: React.FC = () => {
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
-              className="lg:col-span-5 grid grid-cols-2 gap-8 lg:pl-6 border-t lg:border-t-0 lg:border-l border-[#303236]/60 pt-6 lg:pt-0"
+              className="lg:col-span-5 grid grid-cols-2 gap-8 lg:pl-8 border-t lg:border-t-0 lg:border-l border-[#303236]/60 pt-6 lg:pt-0"
             >
               <div>
                 <span className="block text-[10px] font-mono uppercase text-[#929397]/70 tracking-widest mb-1.5">
@@ -102,7 +84,7 @@ export const Hero: React.FC = () => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.4 }}
-          className="mt-12 md:mt-16 pt-5 border-t border-[#303236]/50 flex flex-col sm:flex-row sm:items-center justify-between gap-4 text-xs font-mono text-[#929397]/80"
+          className="mt-14 md:mt-20 pt-6 border-t border-[#303236]/50 flex flex-col sm:flex-row sm:items-center justify-between gap-4 text-xs font-mono text-[#929397]/80"
         >
           <div className="flex items-center gap-6">
             <span className="text-[#F1F0EC]/90">
