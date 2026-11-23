@@ -11,31 +11,48 @@ export const Header: React.FC = () => {
   const [activeSection, setActiveSection] = useState<string>('');
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 30);
+    const sectionIds = ['about', 'experience', 'work', 'skills', 'contact'];
+    const sectionElements = sectionIds
+      .map((id) => document.getElementById(id))
+      .filter((element): element is HTMLElement => element !== null);
 
-      const sections = ['about', 'experience', 'work', 'skills', 'contact'];
-      const scrollPosition = window.scrollY + 140;
+    // Observe section visibility instead of measuring every section on every scroll.
+    const sectionObserver = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
 
-      for (const sectionId of sections) {
-        const el = document.getElementById(sectionId);
-        if (el) {
-          const top = el.offsetTop;
-          const height = el.offsetHeight;
-          if (scrollPosition >= top && scrollPosition < top + height) {
-            setActiveSection(sectionId);
-            return;
-          }
+        if (visible[0]) {
+          setActiveSection(visible[0].target.id);
         }
+      },
+      {
+        rootMargin: '-22% 0px -62% 0px',
+        threshold: [0, 0.15, 0.35, 0.6],
       }
-      if (window.scrollY < 200) {
-        setActiveSection('');
+    );
+
+    sectionElements.forEach((element) => sectionObserver.observe(element));
+
+    // Only update React state when the header crosses its scroll threshold.
+    let previousScrolled = window.scrollY > 30;
+    setIsScrolled(previousScrolled);
+
+    const handleScroll = () => {
+      const nextScrolled = window.scrollY > 30;
+      if (nextScrolled !== previousScrolled) {
+        previousScrolled = nextScrolled;
+        setIsScrolled(nextScrolled);
       }
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
-    handleScroll();
-    return () => window.removeEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      sectionObserver.disconnect();
+    };
   }, []);
 
   const closeMobileMenu = () => setMobileMenuOpen(false);
@@ -43,14 +60,13 @@ export const Header: React.FC = () => {
   return (
     <>
       <header
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        className={`fixed top-0 left-0 right-0 z-50 transition-colors duration-200 ${
           isScrolled
             ? 'h-16 md:h-[76px] bg-[#111315]/85 backdrop-blur-md border-b border-[#303236]/60 shadow-sm'
             : 'h-16 md:h-[76px] bg-transparent border-b border-transparent'
         }`}
       >
         <div className="max-w-content mx-auto h-full px-5 md:px-16 flex items-center justify-between">
-          {/* Logo / Brand */}
           <Link
             href="/"
             className="text-xs md:text-sm font-medium tracking-[0.14em] text-[#F1F0EC] hover:text-white transition-colors uppercase select-none"
@@ -59,7 +75,6 @@ export const Header: React.FC = () => {
             {portfolioData.navigation.brand}
           </Link>
 
-          {/* Desktop Navigation */}
           <nav
             className="hidden md:flex items-center gap-7 lg:gap-8 text-sm"
             aria-label="Main Navigation"
@@ -67,6 +82,7 @@ export const Header: React.FC = () => {
             {portfolioData.navigation.links.map((link) => {
               const sectionId = link.href.replace('#', '');
               const isActive = activeSection === sectionId;
+
               return (
                 <a
                   key={link.label}
@@ -85,23 +101,22 @@ export const Header: React.FC = () => {
               );
             })}
 
-            {/* CTA button */}
             <a
               href={portfolioData.navigation.cta.href}
-              className="ml-2 inline-flex items-center justify-center px-4 py-2 rounded-full text-xs font-medium bg-[#F1F0EC] text-[#111315] hover:bg-white hover:shadow-[0_0_15px_rgba(241,240,236,0.2)] transition-all duration-200"
+              className="ml-2 inline-flex items-center justify-center px-4 py-2 rounded-full text-xs font-medium bg-[#F1F0EC] text-[#111315] hover:bg-white transition-colors duration-200"
             >
               {portfolioData.navigation.cta.label}
             </a>
           </nav>
 
-          {/* Mobile Menu Button */}
           <div className="flex items-center gap-3 md:hidden">
             <button
               type="button"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-2 text-[#929397] hover:text-[#F1F0EC] focus:outline-none"
+              className="p-2 text-[#929397] hover:text-[#F1F0EC] transition-colors"
               aria-expanded={mobileMenuOpen}
-              aria-label="Toggle navigation menu"
+              aria-label={mobileMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
+              aria-controls="mobile-navigation"
             >
               {mobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
             </button>
@@ -109,12 +124,13 @@ export const Header: React.FC = () => {
         </div>
       </header>
 
-      {/* Mobile Navigation Drawer */}
       {mobileMenuOpen && (
         <div
+          id="mobile-navigation"
           className="fixed inset-0 z-40 bg-[#111315] flex flex-col justify-between p-8 pt-28 md:hidden animate-in fade-in duration-200"
           role="dialog"
           aria-modal="true"
+          aria-label="Mobile navigation"
         >
           <div className="flex flex-col space-y-6">
             <p className="text-[11px] font-mono tracking-widest text-[#929397] uppercase">
