@@ -70,8 +70,8 @@ export const portfolioData = {
     },
   },
   hero: {
-    badge: "Independent product designer",
-    locationYear: "Surat, India · 2026",
+    badge: "DIGITAL PRODUCT DESIGNER",
+    locationYear: "SURAT, INDIA · 2026",
     headline: {
       line1: "Designer based in ",
       highlight: "Surat.",
@@ -82,13 +82,9 @@ export const portfolioData = {
       "I'm Ayush Rokad, a UI/UX & Product Designer with 3+ years of experience turning complex requirements into thoughtful, intuitive digital experiences.",
     metadata: [
       { label: "LOCATION", value: "Surat, Gujarat, India" },
-      { label: "EXPERIENCE", value: "3+ years" },
-      { label: "CURRENTLY", value: "Open to opportunities · Remote worldwide" },
+      { label: "EXPERIENCE", value: "3+ Years" },
+      { label: "AVAILABILITY", value: "Open to Work" },
     ],
-    portraitPlaceholder: {
-      caption: "Ayush Rokad",
-      subcaption: "Product Designer",
-    },
   },
   about: {
     eyebrow: "01 / ABOUT ME",
