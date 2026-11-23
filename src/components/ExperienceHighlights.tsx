@@ -14,16 +14,15 @@ export const ExperienceHighlights: React.FC = () => {
       className="py-20 md:py-32 border-t border-[#303236]/60 bg-[#111315]"
     >
       <div className="max-w-content mx-auto px-5 md:px-16">
-        {/* Eyebrow & Timeline Span */}
+        {/* Eyebrow */}
         <motion.div
           variants={fadeInUp}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: '-50px' }}
-          className="flex items-center justify-between text-xs font-mono tracking-widest text-[#929397] uppercase mb-6 md:mb-8 pb-4 border-b border-[#303236]/40"
+          className="text-xs font-mono tracking-widest text-[#929397] uppercase mb-6 md:mb-8"
         >
-          <span>{experienceHighlights.eyebrow}</span>
-          <span className="text-[#AFA4FF]/80">{experienceHighlights.timelineSpan}</span>
+          {experienceHighlights.eyebrow}
         </motion.div>
 
         {/* Section Heading & Intro */}
@@ -46,95 +45,152 @@ export const ExperienceHighlights: React.FC = () => {
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true, margin: '-50px' }}
-              className="text-base sm:text-lg text-[#929397] leading-relaxed max-w-lg"
+              className="text-base sm:text-lg text-[#929397] leading-relaxed max-w-lg font-normal"
             >
               {experienceHighlights.introduction}
             </motion.p>
           </div>
         </div>
 
-        {/* Numbered Project Blocks */}
+        {/* Numbered Editorial Project Blocks */}
         <div className="border-t border-[#303236]">
           {experienceHighlights.projects.map((project, index) => (
-            <motion.div
+            <motion.article
               key={project.id}
               variants={fadeInUp}
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true, margin: '-50px' }}
-              transition={{ delay: index * 0.1 }}
-              className="group py-12 md:py-16 border-b border-[#303236] hover:bg-[#191B1E]/30 transition-colors duration-300 px-0 md:px-8 -mx-0 md:-mx-8 rounded-xl"
+              transition={{ delay: index * 0.08 }}
+              className="group py-14 md:py-20 border-b border-[#303236] transition-colors duration-300"
             >
-              <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
-                {/* Large Oversized Serif Number (2 cols) */}
-                <div className="lg:col-span-2">
-                  <span className="font-serif text-5xl sm:text-6xl md:text-7xl lg:text-8xl text-[#AFA4FF]/90 font-light leading-none block select-none group-hover:text-[#C2BAFF] transition-colors">
-                    {project.number}
+              {/* Top Meta Bar within project */}
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-xs font-mono text-[#929397] tracking-wider uppercase mb-6 pb-3 border-b border-[#303236]/30">
+                <div className="flex items-center gap-2">
+                  <span className="text-[#AFA4FF] font-medium">
+                    {project.number} / {project.tag}
                   </span>
                 </div>
+                <div className="flex items-center gap-3 text-[11px] sm:text-xs text-[#929397]/80">
+                  <span>{project.company}</span>
+                  <span className="text-[#303236]">·</span>
+                  <span>{project.period}</span>
+                </div>
+              </div>
 
-                {/* Main Content Column (7 cols) */}
-                <div className="lg:col-span-7 space-y-5">
-                  {/* Company & Role subheader */}
-                  <div className="text-[11px] sm:text-xs font-mono tracking-widest uppercase text-[#AFA4FF] flex items-center gap-2">
-                    <span>{project.company}</span>
-                    <span className="text-[#303236]">·</span>
-                    <span className="text-[#F1F0EC]/80">{project.role}</span>
+              {/* 12-Column Grid Layout */}
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start">
+                {/* Large Serif Number (2 cols desktop) */}
+                <div className="lg:col-span-2">
+                  <span className="font-serif text-6xl sm:text-7xl lg:text-8xl text-[#AFA4FF] font-light leading-none block select-none group-hover:text-[#C2BAFF] transition-colors">
+                    {project.number}
+                  </span>
+                  <div className="mt-3 text-[11px] font-mono tracking-widest text-[#929397]/70 uppercase hidden lg:block">
+                    {project.discipline}
+                  </div>
+                </div>
+
+                {/* Main Content Column (7 cols desktop) */}
+                <div className="lg:col-span-7 space-y-6">
+                  {/* Discipline on mobile/tablet */}
+                  <div className="text-[11px] font-mono tracking-widest text-[#AFA4FF] uppercase lg:hidden">
+                    {project.discipline}
                   </div>
 
-                  {/* Large Project Title */}
-                  <h3 className="font-serif text-2xl sm:text-3xl md:text-4xl text-[#F1F0EC] group-hover:text-white transition-colors leading-snug">
+                  {/* Project Title */}
+                  <h3 className="font-serif text-2xl sm:text-3xl md:text-4xl text-[#F1F0EC] group-hover:text-white transition-colors leading-tight">
                     {project.title}
                   </h3>
 
-                  {/* Description */}
-                  <p className="text-sm sm:text-base text-[#929397] leading-relaxed font-normal max-w-2xl">
+                  {/* Narrative Description */}
+                  <p className="text-base sm:text-lg text-[#929397] leading-relaxed font-normal max-w-2xl">
                     {project.description}
                   </p>
 
-                  {/* Category Outlined Tags */}
-                  <div className="flex flex-wrap gap-2 pt-2">
-                    {project.categories.map((category) => (
-                      <span
-                        key={category}
-                        className="px-3 py-1 rounded-full border border-[#303236] bg-[#111315]/60 text-[11px] font-mono text-[#929397] group-hover:border-[#AFA4FF]/40 group-hover:text-[#F1F0EC] transition-all"
-                      >
-                        {category}
-                      </span>
-                    ))}
+                  {/* Optional Key Product Experiences (e.g. for Customer App) */}
+                  {project.keyExperiences && project.keyExperiences.length > 0 && (
+                    <div className="pt-2">
+                      <h4 className="text-xs font-mono uppercase tracking-widest text-[#F1F0EC]/90 mb-3">
+                        Key product experiences
+                      </h4>
+                      <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs sm:text-sm text-[#929397]">
+                        {project.keyExperiences.map((exp, i) => (
+                          <li key={i} className="flex items-baseline gap-2">
+                            <span className="w-1.5 h-1.5 rounded-full bg-[#AFA4FF]/70 shrink-0 mt-1" />
+                            <span>{exp}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+
+                  {/* What I Worked On */}
+                  <div className="pt-4 border-t border-[#303236]/40">
+                    <h4 className="text-xs font-mono uppercase tracking-widest text-[#F1F0EC]/90 mb-4 flex items-center gap-2">
+                      <span>What I worked on</span>
+                      <span className="w-8 h-[1px] bg-[#303236]" />
+                    </h4>
+                    <ul className="space-y-2.5">
+                      {project.responsibilities.map((resp, i) => (
+                        <li
+                          key={i}
+                          className="flex items-start gap-3 text-xs sm:text-sm text-[#929397] leading-relaxed"
+                        >
+                          <span className="font-mono text-[11px] text-[#AFA4FF]/80 shrink-0 mt-0.5">
+                            0{i + 1}
+                          </span>
+                          <span className="text-[#929397] group-hover:text-[#F1F0EC]/90 transition-colors">
+                            {resp}
+                          </span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+
+                {/* Right Column: Scope & Status Metadata (3 cols desktop) */}
+                <div className="lg:col-span-3 space-y-6 pt-6 lg:pt-0 border-t lg:border-t-0 lg:border-l border-[#303236]/50 lg:pl-8">
+                  {/* Scope Metric */}
+                  <div>
+                    <span className="block text-[10px] font-mono uppercase tracking-widest text-[#929397]/70 mb-1">
+                      PRODUCT SCOPE
+                    </span>
+                    <span className="font-serif text-3xl sm:text-4xl text-[#F1F0EC] font-normal block tabular-nums">
+                      {project.scope.metric}
+                    </span>
+                    <span className="text-xs text-[#929397] block mt-0.5 font-normal">
+                      {project.scope.label}
+                    </span>
+                    <span className="text-[11px] text-[#929397]/60 block mt-1 leading-snug">
+                      {project.scope.detail}
+                    </span>
                   </div>
 
-                  {/* Focus Areas / Confidential Notice */}
-                  {project.focusAreas && (
-                    <div className="pt-3 border-t border-[#303236]/50">
-                      <div className="flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-3 text-xs">
-                        <span className="font-mono text-[10px] uppercase tracking-wider text-[#929397]/70 shrink-0">
-                          Focus areas:
-                        </span>
-                        <span className="text-[#F1F0EC]/80 leading-relaxed font-normal">
-                          {project.focusAreas}
-                        </span>
-                      </div>
+                  {/* Status Badge */}
+                  <div className="pt-4 border-t border-[#303236]/40">
+                    <span className="block text-[10px] font-mono uppercase tracking-widest text-[#929397]/70 mb-1.5">
+                      STATUS
+                    </span>
+                    <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-[#303236] bg-[#191B1E]/60 text-xs text-[#F1F0EC]">
+                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
+                      <span>{project.status}</span>
                     </div>
-                  )}
+                  </div>
 
-                  {project.confidentialNotice && (
-                    <div className="pt-2">
-                      <span className="text-xs text-[#929397]/70 italic">
-                        {project.confidentialNotice}
+                  {/* Focus Areas (if available) */}
+                  {project.focus && (
+                    <div className="pt-4 border-t border-[#303236]/40">
+                      <span className="block text-[10px] font-mono uppercase tracking-widest text-[#929397]/70 mb-1.5">
+                        CORE FOCUS
                       </span>
+                      <p className="text-xs text-[#929397] leading-relaxed">
+                        {project.focus}
+                      </p>
                     </div>
                   )}
-                </div>
-
-                {/* Period / Timeline Date (3 cols, right aligned on desktop) */}
-                <div className="lg:col-span-3 lg:text-right">
-                  <span className="font-mono text-xs sm:text-sm text-[#929397] tracking-wider uppercase inline-block py-1 px-3 rounded-full border border-[#303236]/60 bg-[#111315]/40">
-                    {project.period}
-                  </span>
                 </div>
               </div>
-            </motion.div>
+            </motion.article>
           ))}
         </div>
       </div>

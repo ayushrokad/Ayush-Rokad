@@ -9,14 +9,21 @@ export interface ExperienceEntry {
 export interface ProjectHighlight {
   id: string;
   number: string;
+  tag: string;
+  company: string;
   period: string;
   title: string;
-  company: string;
-  role: string;
+  discipline: string;
   description: string;
-  categories: string[];
-  focusAreas?: string;
-  confidentialNotice?: string;
+  keyExperiences?: string[];
+  responsibilities: string[];
+  scope: {
+    metric: string;
+    label: string;
+    detail: string;
+  };
+  status: string;
+  focus?: string;
 }
 
 export interface ExpertiseItem {
@@ -128,49 +135,89 @@ export const portfolioData = {
   },
   experienceHighlights: {
     eyebrow: "03 / EXPERIENCE HIGHLIGHTS",
-    timelineSpan: "2023 — 2026",
-    headline: "A selection of experiences that shaped my work.",
+    headline: "Products I've helped shape.",
     introduction:
-      "Products, platforms and interfaces I've contributed to throughout my design journey.",
+      "A selection of digital products, platforms and experiences I've contributed to throughout my design journey — from complex commerce ecosystems to mobile applications.",
     projects: [
       {
-        id: "local-commerce-ecosystem",
+        id: "seller-experience",
         number: "01",
-        period: "2024 — 2026",
-        title: "Local Commerce Ecosystem",
+        tag: "SELLER EXPERIENCE",
         company: "LETMEGRAB",
-        role: "PRODUCT DESIGN",
+        period: "2024 — 2026",
+        discipline: "E-COMMERCE · MOBILE · PRODUCT DESIGN",
+        title: "Local Commerce — Seller Experience",
         description:
-          "A multi-sided commerce platform connecting local businesses with customers through shopping, store management and flexible order fulfilment.",
-        categories: ["E-commerce", "Mobile", "Product Design", "UX Flows"],
-        focusAreas:
-          "Seller management · Inventory · Customer shopping · Multi-store checkout · Pickup & delivery",
+          "A comprehensive seller platform designed to help local businesses manage their stores and operate their online presence. The experience brings together inventory, order management, store operations and seller engagement in one connected ecosystem.",
+        responsibilities: [
+          "Refined and modernized existing product modules, improving interface consistency and usability.",
+          "Designed new product features and UX flows based on business requirements.",
+          "Worked across inventory management, orders, brands, categories, product management and seller verification.",
+          "Designed features such as Store Highlights and an Alerts experience for items requiring attention.",
+          "Maintained structured Figma components, design-system foundations and interactive prototypes.",
+          "Collaborated directly with the founder and development team to translate business requirements into practical, technically feasible experiences.",
+        ],
+        scope: {
+          metric: "2,000+",
+          label: "Approx. screens / modules",
+          detail: "Across the seller product experience",
+        },
+        status: "Testing / Pre-launch",
       },
       {
-        id: "mobile-applications-collection",
+        id: "customer-experience",
         number: "02",
-        period: "2023 — 2024",
-        title: "150+ Mobile Applications",
-        company: "CODE INFOSYS",
-        role: "UI/UX DESIGN",
+        tag: "CUSTOMER EXPERIENCE",
+        company: "LETMEGRAB",
+        period: "2024 — 2026",
+        discipline: "E-COMMERCE · MOBILE · UX / PRODUCT DESIGN",
+        title: "Local Commerce — Customer Experience",
         description:
-          "A collection of small mobile products across different categories, focused on clear interfaces, visual consistency and interactive experiences.",
-        categories: ["Mobile UI", "Utility", "Tutorials", "Gaming", "Interaction"],
-        focusAreas:
-          "Mobile interfaces · Visual design · Reusable patterns · Basic animations",
+          "A customer-facing shopping experience built around discovering and purchasing from nearby local businesses. The product focuses on simplifying multi-store shopping, checkout and flexible fulfilment through in-store pickup and doorstep delivery.",
+        keyExperiences: [
+          "Multi-store shopping and checkout",
+          "Store-specific in-store pickup and doorstep delivery",
+          "Product discovery and shopping journeys",
+          "Customer order and post-purchase experiences",
+        ],
+        responsibilities: [
+          "Designed and refined customer-facing UX flows across the shopping journey.",
+          "Worked on a multi-store checkout experience to make complex orders easier to understand.",
+          "Structured pickup and doorstep delivery options at the individual store and order level.",
+          "Created high-fidelity interfaces, interactive prototypes and detailed interaction states.",
+          "Focused on making multi-store purchasing and order fulfilment more intuitive.",
+        ],
+        scope: {
+          metric: "1,800+",
+          label: "Approx. screens / modules",
+          detail: "Across the customer product experience",
+        },
+        status: "Testing / Pre-launch",
       },
       {
-        id: "confidential-banking-product",
+        id: "mobile-applications",
         number: "03",
-        period: "Confidential",
-        title: "Confidential Banking Product",
-        company: "CONFIDENTIAL",
-        role: "UI/UX DESIGN",
+        tag: "MOBILE APPLICATIONS",
+        company: "CODE INFOSYS",
+        period: "2023 — 2024",
+        discipline: "MOBILE · UI/UX · INTERACTIVE DESIGN",
+        title: "150+ Mobile Applications",
         description:
-          "UI/UX design contributions to a confidential banking product.",
-        categories: ["Banking", "Mobile", "UI/UX"],
-        confidentialNotice:
-          "Project details intentionally limited due to confidentiality.",
+          "A diverse collection of more than 150 small mobile applications spanning utility tools, tutorials, guides and lightweight gaming experiences. Working across different product concepts helped build a strong foundation in interface design, visual consistency and interaction design.",
+        responsibilities: [
+          "Designed mobile interfaces across a wide range of application concepts.",
+          "Created high-fidelity UI and reusable interface patterns.",
+          "Developed basic animations and interactive experiences for lightweight mobile games and applications.",
+          "Translated product requirements into clear, visually polished mobile interfaces.",
+          "Worked alongside a multidisciplinary design and development team.",
+        ],
+        scope: {
+          metric: "150+",
+          label: "Small mobile applications",
+          detail: "Utility, tutorial, gaming & guides",
+        },
+        status: "Shipped / Live on App Store & Play Store",
+        focus: "Mobile UI · Visual Design · Interaction Design · Basic Animation",
       },
     ] as ProjectHighlight[],
   },
