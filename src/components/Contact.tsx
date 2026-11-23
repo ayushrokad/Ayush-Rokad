@@ -1,12 +1,32 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { portfolioData } from '@/data/portfolio';
 import { fadeInUp } from '@/lib/animations';
-import { ArrowUp, ArrowUpRight } from 'lucide-react';
+import { ArrowUp, ArrowUpRight, Copy, Check } from 'lucide-react';
 
 export const Contact: React.FC = () => {
+  const [copied, setCopied] = useState(false);
+  const [copyError, setCopyError] = useState(false);
+
+  const handleCopyEmail = async () => {
+    try {
+      await navigator.clipboard.writeText(portfolioData.contact.email);
+      setCopied(true);
+      setCopyError(false);
+      setTimeout(() => {
+        setCopied(false);
+      }, 1800);
+    } catch (err) {
+      console.error('Failed to copy email:', err);
+      setCopyError(true);
+      setTimeout(() => {
+        setCopyError(false);
+      }, 2500);
+    }
+  };
+
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -52,26 +72,63 @@ export const Contact: React.FC = () => {
             {portfolioData.contact.subheadline}
           </motion.p>
 
-          {/* Massive Editorial Email Link */}
+          {/* One-Click Copy-to-Clipboard Email Interaction */}
           <motion.div
             variants={fadeInUp}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: '-50px' }}
+            className="space-y-3"
           >
-            <a
-              href={`mailto:${portfolioData.contact.email}`}
-              className="group inline-flex items-center gap-3 font-serif text-2xl sm:text-4xl md:text-5xl lg:text-6xl text-[#AFA4FF] hover:text-[#C2BAFF] transition-colors relative"
-            >
-              <span className="relative">
-                {portfolioData.contact.email}
-                <span className="absolute bottom-0 left-0 w-full h-[1.5px] md:h-[2px] bg-[#AFA4FF] scale-x-100 group-hover:scale-x-105 origin-left transition-transform duration-300" />
-              </span>
-              <ArrowUpRight
-                size={32}
-                className="group-hover:translate-x-1.5 group-hover:-translate-y-1.5 transition-transform duration-300 text-[#AFA4FF] hidden sm:inline"
-              />
-            </a>
+            <div className="inline-flex items-center gap-4 flex-wrap">
+              <button
+                type="button"
+                onClick={handleCopyEmail}
+                aria-label="Copy email address"
+                className="group inline-flex items-center gap-3.5 sm:gap-5 font-serif text-2xl sm:text-4xl md:text-5xl lg:text-6xl text-[#AFA4FF] hover:text-[#C2BAFF] transition-colors relative cursor-pointer text-left bg-transparent border-0 p-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#AFA4FF] focus-visible:ring-offset-4 focus-visible:ring-offset-[#111315] rounded-lg"
+              >
+                <span className="relative">
+                  {portfolioData.contact.email}
+                  <span className="absolute bottom-0 left-0 w-full h-[1.5px] md:h-[2px] bg-[#AFA4FF] scale-x-100 group-hover:scale-x-105 origin-left transition-transform duration-300" />
+                </span>
+
+                {/* Copy Icon with Success Feedback State */}
+                <span className="inline-flex items-center justify-center p-2 rounded-full border border-[#303236] bg-[#191B1E]/60 text-[#AFA4FF] group-hover:border-[#AFA4FF]/60 group-hover:text-[#F1F0EC] transition-all">
+                  {copied ? (
+                    <Check size={20} className="text-emerald-400 stroke-[2.2]" />
+                  ) : (
+                    <Copy size={20} className="group-hover:scale-105 transition-transform" />
+                  )}
+                </span>
+              </button>
+
+              {/* Success / Copied Badge */}
+              {copied && (
+                <span
+                  role="status"
+                  aria-live="polite"
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-mono text-emerald-400 bg-emerald-400/10 border border-emerald-400/25 animate-in fade-in duration-200"
+                >
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
+                  Email copied!
+                </span>
+              )}
+
+              {copyError && (
+                <span
+                  role="status"
+                  aria-live="polite"
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-mono text-amber-300 bg-amber-400/10 border border-amber-400/25"
+                >
+                  Please copy manually: {portfolioData.contact.email}
+                </span>
+              )}
+            </div>
+
+            {/* Subtle Helper Text */}
+            <p className="text-xs text-[#929397]/70 font-mono">
+              Click the email to copy it.
+            </p>
           </motion.div>
         </div>
 

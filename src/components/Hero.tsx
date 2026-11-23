@@ -5,46 +5,21 @@ import { motion } from 'framer-motion';
 import { portfolioData } from '@/data/portfolio';
 import { StarField } from './StarField';
 import { headlineLineVariant } from '@/lib/animations';
-import { ArrowUpRight } from 'lucide-react';
+import { ArrowDown, ArrowUpRight } from 'lucide-react';
 
 export const Hero: React.FC = () => {
   const { hero } = portfolioData;
 
   return (
-    <section className="relative min-h-[92vh] flex flex-col justify-between pt-28 pb-14 md:pt-36 md:pb-16 overflow-hidden bg-[#111315]">
+    <section className="relative min-h-[92vh] flex flex-col justify-between pt-32 sm:pt-36 md:pt-40 lg:pt-44 pb-12 md:pb-16 overflow-hidden bg-[#111315]">
       {/* Subtle Atmospheric Star Field Canvas */}
       <StarField />
 
       {/* Main Content Container */}
       <div className="relative z-10 max-w-content mx-auto w-full px-5 md:px-16 flex-1 flex flex-col justify-between">
-        {/* Top Eyebrow Row */}
-        <motion.div
-          initial={{ opacity: 0, y: -10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-          className="flex items-center justify-between text-xs text-[#929397] tracking-wider uppercase mb-10 md:mb-16 pb-4 border-b border-[#303236]/40"
-        >
-          <div className="flex items-center gap-2.5">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#AFA4FF]" />
-            <span className="font-mono text-[11px] sm:text-xs tracking-widest text-[#F1F0EC]/90 font-medium">
-              {hero.badge}
-            </span>
-          </div>
-          <a
-            href="#contact"
-            className="font-mono text-[11px] sm:text-xs text-[#AFA4FF] hover:text-[#C2BAFF] tracking-widest flex items-center gap-1 transition-colors group"
-          >
-            <span>{hero.availabilityBadge}</span>
-            <ArrowUpRight
-              size={13}
-              className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"
-            />
-          </a>
-        </motion.div>
-
         {/* Central Core: Headline, Description & CTAs */}
-        <div className="my-auto py-4 md:py-8 space-y-8 md:space-y-12">
-          {/* Main Headline */}
+        <div className="my-auto py-2 md:py-6 space-y-8 md:space-y-12">
+          {/* Main Value Proposition Headline */}
           <div className="max-w-5xl">
             <motion.h1
               variants={headlineLineVariant}
@@ -78,7 +53,7 @@ export const Hero: React.FC = () => {
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
-              className="flex flex-wrap items-center gap-4 sm:gap-6 pt-2"
+              className="flex flex-wrap items-center gap-4 sm:gap-6 pt-1"
             >
               <a
                 href={hero.ctas.primary.href}
@@ -105,29 +80,74 @@ export const Hero: React.FC = () => {
           </div>
         </div>
 
-        {/* Bottom Proof / Metadata Row */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.8, delay: 0.4 }}
-          className="mt-12 md:mt-16 pt-6 border-t border-[#303236]/50 grid grid-cols-1 sm:grid-cols-3 gap-6 text-xs"
-        >
-          {hero.proofPoints.map((point) => (
-            <div key={point.label} className="space-y-1">
-              <div className="flex items-center gap-2">
-                {point.isStatus && (
-                  <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-                )}
-                <span className="font-serif text-2xl sm:text-3xl text-[#F1F0EC] font-normal">
-                  {point.value}
-                </span>
-              </div>
-              <span className="text-xs text-[#929397] block font-normal">
-                {point.label}
+        {/* Bottom Section: Experience & Availability Stats */}
+        <div className="space-y-6 pt-8 md:pt-12">
+          {/* Typographic Metadata Cards */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.8, delay: 0.35 }}
+            className="pt-6 border-t border-[#303236]/40 grid grid-cols-2 sm:grid-cols-3 gap-6 text-xs"
+          >
+            {/* Experience */}
+            <div>
+              <span className="block text-[10px] font-mono uppercase text-[#929397]/70 tracking-widest mb-1">
+                EXPERIENCE
+              </span>
+              <span className="font-serif text-2xl sm:text-3xl text-[#F1F0EC] font-normal">
+                3+ Years
               </span>
             </div>
-          ))}
-        </motion.div>
+
+            {/* Availability */}
+            <div>
+              <span className="block text-[10px] font-mono uppercase text-[#929397]/70 tracking-widest mb-1">
+                AVAILABILITY
+              </span>
+              <span className="font-serif text-2xl sm:text-3xl text-[#AFA4FF] font-normal flex items-center gap-2">
+                <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+                Open to Work
+              </span>
+            </div>
+
+            {/* Product Focus */}
+            <div className="col-span-2 sm:col-span-1">
+              <span className="block text-[10px] font-mono uppercase text-[#929397]/70 tracking-widest mb-1">
+                FOCUS
+              </span>
+              <span className="font-serif text-2xl sm:text-3xl text-[#F1F0EC] font-normal">
+                Mobile & Web
+              </span>
+            </div>
+          </motion.div>
+
+          {/* Bottom Bar: Location & Explore overview anchor */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.8, delay: 0.45 }}
+            className="pt-4 border-t border-[#303236]/30 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs font-mono text-[#929397]/80"
+          >
+            <div className="flex items-center gap-4 sm:gap-6 text-[11px] sm:text-xs">
+              <span className="text-[#F1F0EC]/90">
+                LOCATION: Surat, Gujarat, India
+              </span>
+              <span className="text-[#303236]">·</span>
+              <span>REMOTE WORLDWIDE</span>
+            </div>
+
+            <a
+              href="#about"
+              className="inline-flex items-center gap-1.5 text-xs text-[#929397] hover:text-[#F1F0EC] transition-colors group"
+            >
+              <span>Explore overview</span>
+              <ArrowDown
+                size={12}
+                className="group-hover:translate-y-0.5 transition-transform"
+              />
+            </a>
+          </motion.div>
+        </div>
       </div>
     </section>
   );
