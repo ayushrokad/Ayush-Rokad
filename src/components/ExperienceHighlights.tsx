@@ -10,7 +10,7 @@ export const ExperienceHighlights: React.FC = () => {
 
   return (
     <section
-      id="highlights"
+      id="work"
       className="py-20 md:py-32 border-t border-[#303236]/60 bg-[#111315]"
     >
       <div className="max-w-content mx-auto px-5 md:px-16">
@@ -62,9 +62,9 @@ export const ExperienceHighlights: React.FC = () => {
               whileInView="visible"
               viewport={{ once: true, margin: '-50px' }}
               transition={{ delay: index * 0.08 }}
-              className="group py-14 md:py-20 border-b border-[#303236] transition-colors duration-300"
+              className="group py-12 md:py-16 border-b border-[#303236] transition-colors duration-300"
             >
-              {/* Top Meta Bar within project */}
+              {/* Top Meta Bar */}
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-xs font-mono text-[#929397] tracking-wider uppercase mb-6 pb-3 border-b border-[#303236]/30">
                 <div className="flex items-center gap-2">
                   <span className="text-[#AFA4FF] font-medium">
@@ -91,8 +91,7 @@ export const ExperienceHighlights: React.FC = () => {
                 </div>
 
                 {/* Main Content Column (7 cols desktop) */}
-                <div className="lg:col-span-7 space-y-6">
-                  {/* Discipline on mobile/tablet */}
+                <div className="lg:col-span-7 space-y-5">
                   <div className="text-[11px] font-mono tracking-widest text-[#AFA4FF] uppercase lg:hidden">
                     {project.discipline}
                   </div>
@@ -107,38 +106,19 @@ export const ExperienceHighlights: React.FC = () => {
                     {project.description}
                   </p>
 
-                  {/* Optional Key Product Experiences (e.g. for Customer App) */}
-                  {project.keyExperiences && project.keyExperiences.length > 0 && (
-                    <div className="pt-2">
-                      <h4 className="text-xs font-mono uppercase tracking-widest text-[#F1F0EC]/90 mb-3">
-                        Key product experiences
-                      </h4>
-                      <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs sm:text-sm text-[#929397]">
-                        {project.keyExperiences.map((exp, i) => (
-                          <li key={i} className="flex items-baseline gap-2">
-                            <span className="w-1.5 h-1.5 rounded-full bg-[#AFA4FF]/70 shrink-0 mt-1" />
-                            <span>{exp}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  )}
-
-                  {/* What I Worked On */}
+                  {/* Key Contributions / What I worked on */}
                   <div className="pt-4 border-t border-[#303236]/40">
-                    <h4 className="text-xs font-mono uppercase tracking-widest text-[#F1F0EC]/90 mb-4 flex items-center gap-2">
-                      <span>What I worked on</span>
+                    <h4 className="text-xs font-mono uppercase tracking-widest text-[#F1F0EC]/90 mb-3 flex items-center gap-2">
+                      <span>Key Contributions</span>
                       <span className="w-8 h-[1px] bg-[#303236]" />
                     </h4>
-                    <ul className="space-y-2.5">
+                    <ul className="space-y-2">
                       {project.responsibilities.map((resp, i) => (
                         <li
                           key={i}
-                          className="flex items-start gap-3 text-xs sm:text-sm text-[#929397] leading-relaxed"
+                          className="flex items-start gap-2.5 text-xs sm:text-sm text-[#929397] leading-relaxed"
                         >
-                          <span className="font-mono text-[11px] text-[#AFA4FF]/80 shrink-0 mt-0.5">
-                            0{i + 1}
-                          </span>
+                          <span className="w-1.5 h-1.5 rounded-full bg-[#AFA4FF]/70 shrink-0 mt-1.5" />
                           <span className="text-[#929397] group-hover:text-[#F1F0EC]/90 transition-colors">
                             {resp}
                           </span>
@@ -176,18 +156,6 @@ export const ExperienceHighlights: React.FC = () => {
                       <span>{project.status}</span>
                     </div>
                   </div>
-
-                  {/* Focus Areas (if available) */}
-                  {project.focus && (
-                    <div className="pt-4 border-t border-[#303236]/40">
-                      <span className="block text-[10px] font-mono uppercase tracking-widest text-[#929397]/70 mb-1.5">
-                        CORE FOCUS
-                      </span>
-                      <p className="text-xs text-[#929397] leading-relaxed">
-                        {project.focus}
-                      </p>
-                    </div>
-                  )}
                 </div>
               </div>
             </motion.article>

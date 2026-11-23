@@ -44,7 +44,7 @@ export const Experience: React.FC = () => {
               whileInView="visible"
               viewport={{ once: true, margin: '-40px' }}
               transition={{ delay: index * 0.1 }}
-              className="group py-8 md:py-12 border-b border-[#303236] hover:bg-[#191B1E]/30 transition-colors duration-300 px-0 md:px-6 -mx-0 md:-mx-6 rounded-lg"
+              className="group py-10 md:py-14 border-b border-[#303236] transition-colors duration-300"
             >
               <div className="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-8 items-baseline">
                 {/* Company Name & Role (7 cols) */}
@@ -59,18 +59,33 @@ export const Experience: React.FC = () => {
 
                 {/* Period (5 cols, right aligned on desktop) */}
                 <div className="md:col-span-5 md:text-right">
-                  <span className="font-mono text-xs sm:text-sm text-[#929397] tracking-wider uppercase">
+                  <span className="font-mono text-xs sm:text-sm text-[#929397] tracking-wider uppercase inline-block py-1 px-3 rounded-full border border-[#303236]/60 bg-[#191B1E]/40">
                     {entry.period}
                   </span>
                 </div>
               </div>
 
               {/* Description */}
-              <div className="mt-5 max-w-2xl">
+              <div className="mt-4 max-w-2xl">
                 <p className="text-sm sm:text-base text-[#929397] leading-relaxed font-normal">
                   {entry.description}
                 </p>
               </div>
+
+              {/* Highlights (Resume bullet points) */}
+              {entry.highlights && entry.highlights.length > 0 && (
+                <ul className="mt-4 space-y-2 max-w-2xl">
+                  {entry.highlights.map((h, i) => (
+                    <li
+                      key={i}
+                      className="flex items-baseline gap-2.5 text-xs sm:text-sm text-[#929397]"
+                    >
+                      <span className="w-1.5 h-1.5 rounded-full bg-[#AFA4FF]/70 shrink-0 mt-1.5" />
+                      <span className="leading-relaxed">{h}</span>
+                    </li>
+                  ))}
+                </ul>
+              )}
             </motion.div>
           ))}
         </div>

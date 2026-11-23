@@ -14,7 +14,7 @@ export const Header: React.FC = () => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 30);
 
-      const sections = ['about', 'experience', 'highlights', 'expertise', 'contact'];
+      const sections = ['about', 'experience', 'work', 'skills', 'contact'];
       const scrollPosition = window.scrollY + 140;
 
       for (const sectionId of sections) {

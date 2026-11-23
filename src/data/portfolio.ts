@@ -4,6 +4,7 @@ export interface ExperienceEntry {
   role: string;
   period: string;
   description: string;
+  highlights: string[];
 }
 
 export interface ProjectHighlight {
@@ -15,7 +16,6 @@ export interface ProjectHighlight {
   title: string;
   discipline: string;
   description: string;
-  keyExperiences?: string[];
   responsibilities: string[];
   scope: {
     metric: string;
@@ -23,7 +23,6 @@ export interface ProjectHighlight {
     detail: string;
   };
   status: string;
-  focus?: string;
 }
 
 export interface ExpertiseItem {
@@ -46,39 +45,36 @@ export interface SocialLink {
 
 export const portfolioData = {
   meta: {
-    title: "Ayush Rokad — Product & UI/UX Designer",
+    title: "Ayush Rokad — UI/UX & Product Designer",
     description:
-      "Ayush Rokad is a Product and UI/UX Designer based in Surat, shaping thoughtful digital products with clarity and character. 3+ years of experience in mobile apps, web design, and scalable design systems.",
+      "Ayush Rokad is a UI/UX & Product Designer with 3+ years of experience designing mobile and web products. Experienced in UX flows, high-fidelity UI, design systems, and prototyping.",
     author: "Ayush Rokad",
     siteUrl: "https://ayushrokad.com",
     keywords: [
       "Ayush Rokad",
       "Product Designer",
       "UI/UX Designer",
-      "Design Systems",
       "Mobile App Design",
-      "Web Design",
-      "Interaction Design",
+      "Design Systems",
+      "Prototyping",
       "Surat Designer",
     ],
   },
   navigation: {
-    brand: "AYUSH ROKAD®",
+    brand: "AYUSH ROKAD",
     links: [
       { label: "About", href: "#about" },
       { label: "Experience", href: "#experience" },
-      { label: "Highlights", href: "#highlights" },
-      { label: "Expertise", href: "#expertise" },
+      { label: "Selected Work", href: "#work" },
+      { label: "Skills", href: "#skills" },
       { label: "Contact", href: "#contact" },
     ],
     cta: {
-      label: "Let's talk",
+      label: "Get in touch",
       href: "#contact",
     },
   },
   hero: {
-    badge: "DIGITAL PRODUCT DESIGNER",
-    locationYear: "SURAT, INDIA · 2026",
     headline: {
       line1: "Designer based in ",
       highlight: "Surat.",
@@ -86,19 +82,19 @@ export const portfolioData = {
       line3: "with clarity and character.",
     },
     subtext:
-      "I'm Ayush Rokad, a UI/UX & Product Designer with 3+ years of experience turning complex requirements into thoughtful, intuitive digital experiences.",
+      "UI/UX & Product Designer with 3+ years of experience designing mobile and web products. Experienced in turning complex business requirements into intuitive, technically feasible interfaces.",
     metadata: [
       { label: "LOCATION", value: "Surat, Gujarat, India" },
       { label: "EXPERIENCE", value: "3+ Years" },
-      { label: "AVAILABILITY", value: "Open to Work" },
+      { label: "AVAILABILITY", value: "Open to Work · Full-Time & Part-Time" },
     ],
   },
   about: {
-    eyebrow: "01 / ABOUT ME",
-    headline: "Good design begins with understanding.",
+    eyebrow: "01 / ABOUT",
+    headline: "Design digital products from idea to interface.",
     paragraphs: [
-      "I started my career designing mobile experiences, building a strong foundation in visual design, interaction and interface consistency. My work later evolved into product-focused design, where I took greater ownership of UX flows, features and complete digital experiences.",
-      "I enjoy turning complex business requirements into simple, usable experiences and collaborating with founders, product teams and developers to bring ideas to life.",
+      "I started my design career working on mobile applications, building hands-on experience in visual design, interface consistency and interaction details. At Letmegrab, my role expanded into product-focused design, taking greater ownership of feature thinking, complete UX flows and scalable components.",
+      "I work comfortably alongside founders, product teams and developers to understand business requirements, resolve technical constraints and deliver polished digital experiences.",
     ],
     metrics: [
       {
@@ -107,13 +103,13 @@ export const portfolioData = {
       },
       {
         value: "150+",
-        label: "Small mobile apps designed",
+        label: "Mobile applications designed",
       },
     ] as MetricItem[],
   },
   experience: {
     eyebrow: "02 / EXPERIENCE",
-    headline: "Where I've been.",
+    headline: "Work history.",
     entries: [
       {
         company: "Letmegrab E-Commerce Platform Pvt. Ltd.",
@@ -121,7 +117,13 @@ export const portfolioData = {
         role: "UI/UX Designer",
         period: "Dec 2024 — Oct 2026",
         description:
-          "Designed and refined mobile and web experiences across a local commerce ecosystem, working on product features, UX flows, prototypes and design-system foundations.",
+          "Designed mobile and web experiences across Customer, Seller and Admin platforms in a local commerce ecosystem.",
+        highlights: [
+          "Owned UX flows and high-fidelity UI for core product modules and updates",
+          "Worked on inventory, multi-store checkout, seller verification and store operations",
+          "Maintained structured Figma components and design-system foundations",
+          "Collaborated directly with the founder and developers to balance UX with technical feasibility",
+        ],
       },
       {
         company: "Code Infosys",
@@ -129,73 +131,70 @@ export const portfolioData = {
         role: "UI/UX Designer",
         period: "Jul 2023 — Oct 2024",
         description:
-          "Designed more than 150 small mobile applications across utility, tutorial, guide and gaming concepts, with a focus on visual quality and interaction design.",
+          "Designed small mobile applications across diverse product concepts in a 15-person design and development team.",
+        highlights: [
+          "Designed 150+ small mobile applications spanning utility, tutorial, guide and gaming concepts",
+          "Created high-fidelity UI, reusable interface patterns and interactive prototypes",
+          "Built basic animations and micro-interactions for lightweight mobile experiences",
+          "Delivered rapid, consistent UI execution under real project timelines",
+        ],
       },
     ] as ExperienceEntry[],
   },
   experienceHighlights: {
-    eyebrow: "03 / EXPERIENCE HIGHLIGHTS",
-    headline: "Products I've helped shape.",
+    eyebrow: "03 / SELECTED WORK",
+    headline: "Key product experiences.",
     introduction:
-      "A selection of digital products, platforms and experiences I've contributed to throughout my design journey — from complex commerce ecosystems to mobile applications.",
+      "A focused summary of products and platforms I've contributed to throughout my career.",
     projects: [
       {
-        id: "seller-experience",
+        id: "seller-app",
         number: "01",
         tag: "SELLER EXPERIENCE",
         company: "LETMEGRAB",
         period: "2024 — 2026",
         discipline: "E-COMMERCE · MOBILE · PRODUCT DESIGN",
-        title: "Local Commerce — Seller Experience",
+        title: "Local Commerce Seller App",
         description:
-          "A comprehensive seller platform designed to help local businesses manage their stores and operate their online presence. The experience brings together inventory, order management, store operations and seller engagement in one connected ecosystem.",
+          "A comprehensive seller platform for local merchants to manage their digital store, inventory, orders and customer engagement in one connected experience.",
         responsibilities: [
-          "Refined and modernized existing product modules, improving interface consistency and usability.",
-          "Designed new product features and UX flows based on business requirements.",
-          "Worked across inventory management, orders, brands, categories, product management and seller verification.",
-          "Designed features such as Store Highlights and an Alerts experience for items requiring attention.",
-          "Maintained structured Figma components, design-system foundations and interactive prototypes.",
-          "Collaborated directly with the founder and development team to translate business requirements into practical, technically feasible experiences.",
+          "Redesigned and modernized existing seller modules for improved usability",
+          "Designed UX flows for product catalog, inventory, orders and merchant verification",
+          "Created Store Highlights and an Alerts experience for attention-required items",
+          "Maintained organized Figma components and interactive prototypes",
         ],
         scope: {
           metric: "2,000+",
           label: "Approx. screens / modules",
-          detail: "Across the seller product experience",
+          detail: "Across the complete seller product ecosystem",
         },
         status: "Testing / Pre-launch",
       },
       {
-        id: "customer-experience",
+        id: "customer-app",
         number: "02",
         tag: "CUSTOMER EXPERIENCE",
         company: "LETMEGRAB",
         period: "2024 — 2026",
         discipline: "E-COMMERCE · MOBILE · UX / PRODUCT DESIGN",
-        title: "Local Commerce — Customer Experience",
+        title: "Local Commerce Customer App",
         description:
-          "A customer-facing shopping experience built around discovering and purchasing from nearby local businesses. The product focuses on simplifying multi-store shopping, checkout and flexible fulfilment through in-store pickup and doorstep delivery.",
-        keyExperiences: [
-          "Multi-store shopping and checkout",
-          "Store-specific in-store pickup and doorstep delivery",
-          "Product discovery and shopping journeys",
-          "Customer order and post-purchase experiences",
-        ],
+          "A shopping experience helping customers discover and purchase from nearby local stores, with a focus on simplifying multi-store ordering and flexible fulfillment.",
         responsibilities: [
-          "Designed and refined customer-facing UX flows across the shopping journey.",
-          "Worked on a multi-store checkout experience to make complex orders easier to understand.",
-          "Structured pickup and doorstep delivery options at the individual store and order level.",
-          "Created high-fidelity interfaces, interactive prototypes and detailed interaction states.",
-          "Focused on making multi-store purchasing and order fulfilment more intuitive.",
+          "Structured customer shopping journeys and local store product discovery",
+          "Designed multi-store checkout to make split orders clear and manageable",
+          "Implemented in-store pickup and doorstep delivery options at store and order level",
+          "Created interactive prototypes, component states and detailed interaction flows",
         ],
         scope: {
           metric: "1,800+",
           label: "Approx. screens / modules",
-          detail: "Across the customer product experience",
+          detail: "Across the customer shopping experience",
         },
         status: "Testing / Pre-launch",
       },
       {
-        id: "mobile-applications",
+        id: "mobile-apps",
         number: "03",
         tag: "MOBILE APPLICATIONS",
         company: "CODE INFOSYS",
@@ -203,77 +202,75 @@ export const portfolioData = {
         discipline: "MOBILE · UI/UX · INTERACTIVE DESIGN",
         title: "150+ Mobile Applications",
         description:
-          "A diverse collection of more than 150 small mobile applications spanning utility tools, tutorials, guides and lightweight gaming experiences. Working across different product concepts helped build a strong foundation in interface design, visual consistency and interaction design.",
+          "A broad collection of small mobile applications across utility tools, tutorials, guides and lightweight mobile games.",
         responsibilities: [
-          "Designed mobile interfaces across a wide range of application concepts.",
-          "Created high-fidelity UI and reusable interface patterns.",
-          "Developed basic animations and interactive experiences for lightweight mobile games and applications.",
-          "Translated product requirements into clear, visually polished mobile interfaces.",
-          "Worked alongside a multidisciplinary design and development team.",
+          "Designed clear, accessible mobile interfaces across varied application categories",
+          "Created reusable UI patterns and scalable component foundations",
+          "Developed basic animations and micro-interactions for lightweight mobile games",
+          "Collaborated within a multidisciplinary team to ship apps under active release schedules",
         ],
         scope: {
           metric: "150+",
           label: "Small mobile applications",
-          detail: "Utility, tutorial, gaming & guides",
+          detail: "Utility, tutorial, guide & gaming applications",
         },
-        status: "Shipped / Live on App Store & Play Store",
-        focus: "Mobile UI · Visual Design · Interaction Design · Basic Animation",
+        status: "Shipped & Live",
       },
     ] as ProjectHighlight[],
   },
   expertise: {
-    eyebrow: "04 / EXPERTISE",
-    headline: "What I do",
+    eyebrow: "04 / SKILLS",
+    headline: "Capabilities & focus areas.",
     items: [
       {
-        id: "product-design",
+        id: "product-ux",
         number: "01",
-        title: "Product design",
+        title: "Product & UX Flows",
         description:
-          "Thoughtful digital products from early ideas to polished experiences.",
+          "User journeys, feature design, wireframes and information architecture for complex requirements.",
       },
       {
-        id: "ui-ux-design",
+        id: "mobile-web-ui",
         number: "02",
-        title: "UI/UX design",
+        title: "Mobile & Web UI",
         description:
-          "Intuitive user journeys and visually consistent interfaces.",
-      },
-      {
-        id: "mobile-app-design",
-        number: "03",
-        title: "Mobile app design",
-        description:
-          "Purposeful interfaces designed for real-world mobile use.",
-      },
-      {
-        id: "web-design",
-        number: "04",
-        title: "Web design",
-        description:
-          "Responsive experiences that balance usability and visual clarity.",
+          "Polished, production-ready interfaces designed for real-world mobile and desktop use.",
       },
       {
         id: "design-systems",
-        number: "05",
-        title: "Design systems",
+        number: "03",
+        title: "Design Systems",
         description:
-          "Reusable components and scalable interface patterns.",
+          "Scalable component libraries, typography tokens and consistent interface guidelines in Figma.",
       },
       {
-        id: "interaction-design",
-        number: "06",
-        title: "Interaction design",
+        id: "prototyping",
+        number: "04",
+        title: "Interactive Prototyping",
         description:
-          "Prototypes, motion concepts and meaningful micro-interactions.",
+          "Clickable prototypes for usability testing, founder reviews and developer handoff.",
+      },
+      {
+        id: "micro-interactions",
+        number: "05",
+        title: "Micro-interactions & Motion",
+        description:
+          "Subtle animations, state feedback and transition concepts using Rive, Lottie and Figma.",
+      },
+      {
+        id: "dev-collaboration",
+        number: "06",
+        title: "Developer Collaboration",
+        description:
+          "Clear component specs and active communication to adapt designs within technical constraints.",
       },
     ] as ExpertiseItem[],
   },
   toolkit: {
     eyebrow: "05 / TOOLKIT",
-    headline: "Tools of the trade.",
+    headline: "Tools & software.",
     subtext:
-      "From interface exploration and design systems to interactive prototypes and motion.",
+      "Design and prototyping tools used daily to take ideas from exploration to production.",
     tools: [
       "Figma",
       "Adobe XD",
@@ -285,10 +282,11 @@ export const portfolioData = {
     ],
   },
   philosophy: {
-    eyebrow: "06 / APPROACH",
-    headline: "How I think about design.",
-    statement: "“Make the complex feel simple.”",
-    body: "My approach starts with understanding the problem, organizing the experience and refining the details. I believe good interfaces should feel intuitive, consistent and purposeful.",
+    eyebrow: "06 / HOW I WORK",
+    headline: "Working methodology.",
+    statement:
+      "“I focus on making complex product requirements easier to understand, keeping interfaces consistent, and working closely with developers to ensure technical feasibility.”",
+    body: "My process is practical and iterative. I usually work directly in high-fidelity design for familiar flows, while using wireframes when a problem requires deeper exploration.",
     process: [
       "Understand",
       "Structure",
@@ -299,8 +297,10 @@ export const portfolioData = {
     ],
   },
   contact: {
-    eyebrow: "HAVE SOMETHING IN MIND?",
-    headline: "Let's make something meaningful.",
+    eyebrow: "GET IN TOUCH",
+    headline: "Have a product or feature that needs design?",
+    subheadline:
+      "Open to Full-Time and Part-Time opportunities — Remote or On-Site across Surat, Gujarat.",
     email: "ayushrokad@gmail.com",
     copyright: "© 2026 Ayush Rokad",
     socialLinks: [
@@ -310,7 +310,7 @@ export const portfolioData = {
         isExternal: true,
       },
       {
-        label: "Resume",
+        label: "Download Resume (PDF)",
         href: "/resume.pdf",
         isExternal: true,
       },

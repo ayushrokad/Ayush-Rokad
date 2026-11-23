@@ -9,7 +9,7 @@ import { ArrowUpRight } from 'lucide-react';
 export const Expertise: React.FC = () => {
   return (
     <section
-      id="expertise"
+      id="skills"
       className="py-20 md:py-32 border-t border-[#303236]/60 bg-[#111315]"
     >
       <div className="max-w-content mx-auto px-5 md:px-16">

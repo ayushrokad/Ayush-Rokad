@@ -36,10 +36,21 @@ export const Contact: React.FC = () => {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: '-50px' }}
-            className="font-serif text-3xl sm:text-5xl md:text-6xl lg:text-7xl text-[#F1F0EC] leading-[1.08] tracking-tight mb-10 md:mb-16 max-w-4xl"
+            className="font-serif text-3xl sm:text-5xl md:text-6xl lg:text-7xl text-[#F1F0EC] leading-[1.08] tracking-tight mb-4 max-w-4xl"
           >
             {portfolioData.contact.headline}
           </motion.h2>
+
+          {/* Subheadline / Availability */}
+          <motion.p
+            variants={fadeInUp}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: '-50px' }}
+            className="text-base sm:text-lg text-[#929397] font-normal leading-relaxed mb-10 md:mb-14 max-w-2xl"
+          >
+            {portfolioData.contact.subheadline}
+          </motion.p>
 
           {/* Massive Editorial Email Link */}
           <motion.div
