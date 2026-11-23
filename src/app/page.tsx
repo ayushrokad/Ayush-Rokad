@@ -2,6 +2,7 @@ import { Header } from '@/components/Header';
 import { Hero } from '@/components/Hero';
 import { About } from '@/components/About';
 import { Experience } from '@/components/Experience';
+import { ExperienceHighlights } from '@/components/ExperienceHighlights';
 import { Expertise } from '@/components/Expertise';
 import { Toolkit } from '@/components/Toolkit';
 import { Philosophy } from '@/components/Philosophy';
@@ -15,6 +16,7 @@ export default function Home() {
         <Hero />
         <About />
         <Experience />
+        <ExperienceHighlights />
         <Expertise />
         <Toolkit />
         <Philosophy />

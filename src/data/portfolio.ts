@@ -6,6 +6,19 @@ export interface ExperienceEntry {
   description: string;
 }
 
+export interface ProjectHighlight {
+  id: string;
+  number: string;
+  period: string;
+  title: string;
+  company: string;
+  role: string;
+  description: string;
+  categories: string[];
+  focusAreas?: string;
+  confidentialNotice?: string;
+}
+
 export interface ExpertiseItem {
   id: string;
   number: string;
@@ -47,6 +60,7 @@ export const portfolioData = {
     links: [
       { label: "About", href: "#about" },
       { label: "Experience", href: "#experience" },
+      { label: "Highlights", href: "#highlights" },
       { label: "Expertise", href: "#expertise" },
       { label: "Contact", href: "#contact" },
     ],
@@ -116,8 +130,56 @@ export const portfolioData = {
       },
     ] as ExperienceEntry[],
   },
+  experienceHighlights: {
+    eyebrow: "03 / EXPERIENCE HIGHLIGHTS",
+    timelineSpan: "2023 — 2026",
+    headline: "A selection of experiences that shaped my work.",
+    introduction:
+      "Products, platforms and interfaces I've contributed to throughout my design journey.",
+    projects: [
+      {
+        id: "local-commerce-ecosystem",
+        number: "01",
+        period: "2024 — 2026",
+        title: "Local Commerce Ecosystem",
+        company: "LETMEGRAB",
+        role: "PRODUCT DESIGN",
+        description:
+          "A multi-sided commerce platform connecting local businesses with customers through shopping, store management and flexible order fulfilment.",
+        categories: ["E-commerce", "Mobile", "Product Design", "UX Flows"],
+        focusAreas:
+          "Seller management · Inventory · Customer shopping · Multi-store checkout · Pickup & delivery",
+      },
+      {
+        id: "mobile-applications-collection",
+        number: "02",
+        period: "2023 — 2024",
+        title: "150+ Mobile Applications",
+        company: "CODE INFOSYS",
+        role: "UI/UX DESIGN",
+        description:
+          "A collection of small mobile products across different categories, focused on clear interfaces, visual consistency and interactive experiences.",
+        categories: ["Mobile UI", "Utility", "Tutorials", "Gaming", "Interaction"],
+        focusAreas:
+          "Mobile interfaces · Visual design · Reusable patterns · Basic animations",
+      },
+      {
+        id: "confidential-banking-product",
+        number: "03",
+        period: "Confidential",
+        title: "Confidential Banking Product",
+        company: "CONFIDENTIAL",
+        role: "UI/UX DESIGN",
+        description:
+          "UI/UX design contributions to a confidential banking product.",
+        categories: ["Banking", "Mobile", "UI/UX"],
+        confidentialNotice:
+          "Project details intentionally limited due to confidentiality.",
+      },
+    ] as ProjectHighlight[],
+  },
   expertise: {
-    eyebrow: "03 / EXPERTISE",
+    eyebrow: "04 / EXPERTISE",
     headline: "What I do",
     items: [
       {
@@ -165,7 +227,7 @@ export const portfolioData = {
     ] as ExpertiseItem[],
   },
   toolkit: {
-    eyebrow: "04 / TOOLKIT",
+    eyebrow: "05 / TOOLKIT",
     headline: "Tools of the trade.",
     subtext:
       "From interface exploration and design systems to interactive prototypes and motion.",
@@ -180,7 +242,7 @@ export const portfolioData = {
     ],
   },
   philosophy: {
-    eyebrow: "05 / APPROACH",
+    eyebrow: "06 / APPROACH",
     headline: "How I think about design.",
     statement: "“Make the complex feel simple.”",
     body: "My approach starts with understanding the problem, organizing the experience and refining the details. I believe good interfaces should feel intuitive, consistent and purposeful.",

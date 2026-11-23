@@ -20,10 +20,14 @@ Editorial, minimalist dark portfolio website for Ayush Rokad, UI/UX & Product De
 2. **Hero Section:** Full-width editorial layout with subtle animated canvas star field, oversized serif headline, metadata indicators, and portrait placeholder.
 3. **About Me:** Career narrative and two large typographic metrics (3+ years experience, 150+ mobile apps designed).
 4. **Experience:** Minimal career timeline highlighting Letmegrab and Code Infosys.
-5. **Expertise ("What I do"):** 3×2 bordered service grid spanning Product Design, UI/UX Design, Mobile App Design, Web Design, Design Systems, and Interaction Design.
-6. **Toolkit:** Typography-driven pill tags for Figma, Adobe XD, Photoshop, Illustrator, Rive, Lottie, and Premiere Pro.
-7. **Design Philosophy:** Featured editorial statement (*“Make the complex feel simple.”*) and sequential process steps (Understand → Structure → Design → Prototype → Collaborate → Refine).
-8. **Contact & Footer:** Enormous editorial email CTA (`ayushrokad@gmail.com`), social links (LinkedIn, downloadable Resume), and smooth back-to-top control.
+5. **Experience Highlights (Option B):** Large numbered editorial project blocks featuring:
+   - **01 Local Commerce Ecosystem (Letmegrab):** Product design & UX flows across local commerce.
+   - **02 150+ Mobile Applications (Code Infosys):** Mobile interfaces, utility, tutorials, and micro-interactions.
+   - **03 Confidential Banking Product:** Multi-platform design contributions under confidentiality.
+6. **Expertise ("What I do"):** 3×2 bordered service grid spanning Product Design, UI/UX Design, Mobile App Design, Web Design, Design Systems, and Interaction Design.
+7. **Toolkit:** Typography-driven pill tags for Figma, Adobe XD, Photoshop, Illustrator, Rive, Lottie, and Premiere Pro.
+8. **Design Philosophy:** Featured editorial statement (*“Make the complex feel simple.”*) and sequential process steps (Understand → Structure → Design → Prototype → Collaborate → Refine).
+9. **Contact & Footer:** Enormous editorial email CTA (`ayushrokad@gmail.com`), social links (LinkedIn, downloadable Resume), and smooth back-to-top control.
 
 ## Getting Started
 

@@ -14,8 +14,8 @@ export const Header: React.FC = () => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 30);
 
-      const sections = ['about', 'experience', 'expertise', 'contact'];
-      const scrollPosition = window.scrollY + 120;
+      const sections = ['about', 'experience', 'highlights', 'expertise', 'contact'];
+      const scrollPosition = window.scrollY + 140;
 
       for (const sectionId of sections) {
         const el = document.getElementById(sectionId);
@@ -61,7 +61,7 @@ export const Header: React.FC = () => {
 
           {/* Desktop Navigation */}
           <nav
-            className="hidden md:flex items-center gap-8 text-sm"
+            className="hidden md:flex items-center gap-7 lg:gap-8 text-sm"
             aria-label="Main Navigation"
           >
             {portfolioData.navigation.links.map((link) => {
