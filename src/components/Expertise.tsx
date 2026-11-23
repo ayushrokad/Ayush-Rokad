@@ -7,6 +7,8 @@ import { fadeInUp } from '@/lib/animations';
 import { ArrowUpRight } from 'lucide-react';
 
 export const Expertise: React.FC = () => {
+  const { skills } = portfolioData;
+
   return (
     <section
       id="skills"
@@ -21,7 +23,7 @@ export const Expertise: React.FC = () => {
           viewport={{ once: true, margin: '-50px' }}
           className="text-xs font-mono tracking-widest text-[#929397] uppercase mb-6 md:mb-8"
         >
-          {portfolioData.expertise.eyebrow}
+          {skills.eyebrow}
         </motion.div>
 
         {/* Section Heading */}
@@ -32,12 +34,12 @@ export const Expertise: React.FC = () => {
           viewport={{ once: true, margin: '-50px' }}
           className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-[#F1F0EC] leading-[1.12] tracking-tight mb-14 md:mb-20"
         >
-          {portfolioData.expertise.headline}
+          {skills.headline}
         </motion.h2>
 
         {/* 3 cols desktop x 2 rows, 2 cols tablet, 1 col mobile */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 border-t border-l border-[#303236]">
-          {portfolioData.expertise.items.map((item, index) => (
+          {skills.items.map((item, index) => (
             <motion.div
               key={item.id}
               variants={fadeInUp}
@@ -59,7 +61,7 @@ export const Expertise: React.FC = () => {
                   />
                 </div>
 
-                {/* Service Title */}
+                {/* Title */}
                 <h3 className="font-serif text-2xl text-[#F1F0EC] group-hover:text-white transition-colors mb-3">
                   {item.title}
                 </h3>

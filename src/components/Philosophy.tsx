@@ -6,6 +6,8 @@ import { portfolioData } from '@/data/portfolio';
 import { fadeInUp } from '@/lib/animations';
 
 export const Philosophy: React.FC = () => {
+  const { philosophy } = portfolioData;
+
   return (
     <section
       id="approach"
@@ -20,7 +22,7 @@ export const Philosophy: React.FC = () => {
           viewport={{ once: true, margin: '-50px' }}
           className="text-xs font-mono tracking-widest text-[#929397] uppercase mb-6 md:mb-8"
         >
-          {portfolioData.philosophy.eyebrow}
+          {philosophy.eyebrow}
         </motion.div>
 
         {/* Section Heading */}
@@ -31,7 +33,7 @@ export const Philosophy: React.FC = () => {
           viewport={{ once: true, margin: '-50px' }}
           className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-[#F1F0EC] leading-[1.12] tracking-tight mb-12 md:mb-16"
         >
-          {portfolioData.philosophy.headline}
+          {philosophy.headline}
         </motion.h2>
 
         {/* Featured Editorial Statement */}
@@ -42,8 +44,8 @@ export const Philosophy: React.FC = () => {
           viewport={{ once: true, margin: '-50px' }}
           className="py-8 md:py-12 border-y border-[#303236] my-8"
         >
-          <blockquote className="font-serif italic text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-[#F1F0EC] max-w-4xl leading-[1.15] font-light">
-            {portfolioData.philosophy.statement}
+          <blockquote className="font-serif italic text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-[#F1F0EC] max-w-4xl leading-[1.2] font-light">
+            {philosophy.statement}
           </blockquote>
         </motion.div>
 
@@ -55,9 +57,9 @@ export const Philosophy: React.FC = () => {
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true, margin: '-50px' }}
-              className="text-base sm:text-lg text-[#929397] leading-relaxed"
+              className="text-base sm:text-lg text-[#929397] leading-relaxed font-normal"
             >
-              {portfolioData.philosophy.body}
+              {philosophy.body}
             </motion.p>
           </div>
 
@@ -70,7 +72,7 @@ export const Philosophy: React.FC = () => {
               viewport={{ once: true, margin: '-50px' }}
               className="grid grid-cols-2 sm:grid-cols-3 gap-3"
             >
-              {portfolioData.philosophy.process.map((step, idx) => (
+              {philosophy.process.map((step, idx) => (
                 <div
                   key={step}
                   className="p-4 rounded-lg border border-[#303236] bg-[#191B1E]/20 flex flex-col justify-between h-24 hover:border-[#AFA4FF]/40 transition-colors"
@@ -80,7 +82,7 @@ export const Philosophy: React.FC = () => {
                   </span>
                   <div className="flex items-center justify-between text-sm sm:text-base text-[#F1F0EC] font-medium">
                     <span>{step}</span>
-                    {idx < portfolioData.philosophy.process.length - 1 && (
+                    {idx < philosophy.process.length - 1 && (
                       <span className="text-[#929397]/40 text-xs hidden sm:inline">
                         →
                       </span>

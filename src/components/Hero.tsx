@@ -4,21 +4,32 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { portfolioData } from '@/data/portfolio';
 import { StarField } from './StarField';
-import { headlineLineVariant } from '@/lib/animations';
+import { headlineLineVariant, fadeInUp } from '@/lib/animations';
 import { ArrowDown, ArrowUpRight } from 'lucide-react';
 
 export const Hero: React.FC = () => {
   const { hero } = portfolioData;
 
   return (
-    <section className="relative min-h-[92vh] flex flex-col justify-between pt-32 sm:pt-36 md:pt-40 lg:pt-44 pb-12 md:pb-16 overflow-hidden bg-[#111315]">
+    <section className="relative min-h-[92vh] flex flex-col justify-between pt-28 sm:pt-32 md:pt-36 lg:pt-40 pb-12 md:pb-16 overflow-hidden bg-[#111315]">
       {/* Subtle Atmospheric Star Field Canvas */}
       <StarField />
 
       {/* Main Content Container */}
       <div className="relative z-10 max-w-content mx-auto w-full px-5 md:px-16 flex-1 flex flex-col justify-between">
-        {/* Central Core: Headline, Description & CTAs */}
-        <div className="my-auto py-2 md:py-6 space-y-8 md:space-y-12">
+        {/* Central Core: Eyebrow, Headline, Description & CTAs */}
+        <div className="my-auto py-2 md:py-6 space-y-6 md:space-y-10">
+          {/* Eyebrow / Name & Role for SEO and clear identity */}
+          <motion.div
+            variants={fadeInUp}
+            initial="hidden"
+            animate="visible"
+            className="flex items-center gap-2.5 text-xs sm:text-sm font-mono tracking-widest text-[#AFA4FF] uppercase"
+          >
+            <span className="w-2 h-2 rounded-full bg-[#AFA4FF] animate-pulse" />
+            <span>{hero.eyebrow}</span>
+          </motion.div>
+
           {/* Main Value Proposition Headline */}
           <div className="max-w-5xl">
             <motion.h1
@@ -45,7 +56,7 @@ export const Hero: React.FC = () => {
               transition={{ duration: 0.7, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
               className="text-base sm:text-lg md:text-xl text-[#929397] font-normal leading-relaxed"
             >
-              {hero.subtext}
+              {hero.intro}
             </motion.p>
 
             {/* CTAs */}
@@ -80,14 +91,14 @@ export const Hero: React.FC = () => {
           </div>
         </div>
 
-        {/* Bottom Section: Experience & Availability Stats */}
+        {/* Bottom Section: Experience, Availability, Focus, Location */}
         <div className="space-y-6 pt-8 md:pt-12">
           {/* Typographic Metadata Cards */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.35 }}
-            className="pt-6 border-t border-[#303236]/40 grid grid-cols-2 sm:grid-cols-3 gap-6 text-xs"
+            className="pt-6 border-t border-[#303236]/40 grid grid-cols-2 md:grid-cols-4 gap-6 text-xs"
           >
             {/* Experience */}
             <div>
@@ -95,7 +106,7 @@ export const Hero: React.FC = () => {
                 EXPERIENCE
               </span>
               <span className="font-serif text-2xl sm:text-3xl text-[#F1F0EC] font-normal">
-                3+ Years
+                3+ years
               </span>
             </div>
 
@@ -106,36 +117,41 @@ export const Hero: React.FC = () => {
               </span>
               <span className="font-serif text-2xl sm:text-3xl text-[#AFA4FF] font-normal flex items-center gap-2">
                 <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-                Open to Work
+                Open to work
               </span>
             </div>
 
             {/* Product Focus */}
-            <div className="col-span-2 sm:col-span-1">
+            <div>
               <span className="block text-[10px] font-mono uppercase text-[#929397]/70 tracking-widest mb-1">
                 FOCUS
               </span>
               <span className="font-serif text-2xl sm:text-3xl text-[#F1F0EC] font-normal">
-                Mobile & Web
+                Mobile & web
+              </span>
+            </div>
+
+            {/* Location */}
+            <div>
+              <span className="block text-[10px] font-mono uppercase text-[#929397]/70 tracking-widest mb-1">
+                LOCATION
+              </span>
+              <span className="font-serif text-2xl sm:text-3xl text-[#F1F0EC] font-normal">
+                Surat, India
+              </span>
+              <span className="block text-[11px] font-mono text-[#929397]/70 mt-0.5">
+                (remote anywhere)
               </span>
             </div>
           </motion.div>
 
-          {/* Bottom Bar: Location & Explore overview anchor */}
+          {/* Bottom Bar: Explore overview anchor */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.45 }}
-            className="pt-4 border-t border-[#303236]/30 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs font-mono text-[#929397]/80"
+            className="pt-4 border-t border-[#303236]/30 flex items-center justify-end text-xs font-mono text-[#929397]/80"
           >
-            <div className="flex items-center gap-4 sm:gap-6 text-[11px] sm:text-xs">
-              <span className="text-[#F1F0EC]/90">
-                LOCATION: Surat, Gujarat, India
-              </span>
-              <span className="text-[#303236]">·</span>
-              <span>REMOTE WORLDWIDE</span>
-            </div>
-
             <a
               href="#about"
               className="inline-flex items-center gap-1.5 text-xs text-[#929397] hover:text-[#F1F0EC] transition-colors group"

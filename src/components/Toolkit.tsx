@@ -6,6 +6,8 @@ import { portfolioData } from '@/data/portfolio';
 import { fadeInUp } from '@/lib/animations';
 
 export const Toolkit: React.FC = () => {
+  const { toolkit } = portfolioData;
+
   return (
     <section
       id="toolkit"
@@ -20,10 +22,10 @@ export const Toolkit: React.FC = () => {
           viewport={{ once: true, margin: '-50px' }}
           className="text-xs font-mono tracking-widest text-[#929397] uppercase mb-6 md:mb-8"
         >
-          {portfolioData.toolkit.eyebrow}
+          {toolkit.eyebrow}
         </motion.div>
 
-        {/* Section Heading */}
+        {/* Section Heading & Intro */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-start mb-12 md:mb-16">
           <div className="lg:col-span-6">
             <motion.h2
@@ -33,7 +35,7 @@ export const Toolkit: React.FC = () => {
               viewport={{ once: true, margin: '-50px' }}
               className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-[#F1F0EC] leading-[1.12] tracking-tight"
             >
-              {portfolioData.toolkit.headline}
+              {toolkit.headline}
             </motion.h2>
           </div>
 
@@ -43,9 +45,9 @@ export const Toolkit: React.FC = () => {
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true, margin: '-50px' }}
-              className="text-base sm:text-lg text-[#929397] leading-relaxed max-w-xl"
+              className="text-base sm:text-lg text-[#929397] leading-relaxed max-w-xl font-normal"
             >
-              {portfolioData.toolkit.subtext}
+              {toolkit.intro}
             </motion.p>
           </div>
         </div>
@@ -58,7 +60,7 @@ export const Toolkit: React.FC = () => {
           viewport={{ once: true, margin: '-50px' }}
           className="flex flex-wrap gap-3 sm:gap-4 pt-6"
         >
-          {portfolioData.toolkit.tools.map((tool, index) => (
+          {toolkit.tools.map((tool) => (
             <motion.div
               key={tool}
               whileHover={{ y: -2 }}

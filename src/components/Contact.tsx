@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { portfolioData } from '@/data/portfolio';
 import { fadeInUp } from '@/lib/animations';
-import { ArrowUp, ArrowUpRight, Copy, Check } from 'lucide-react';
+import { ArrowUpRight, Copy, Check } from 'lucide-react';
 
 export const Contact: React.FC = () => {
   const [copied, setCopied] = useState(false);
@@ -25,10 +25,6 @@ export const Contact: React.FC = () => {
         setCopyError(false);
       }, 2500);
     }
-  };
-
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   return (
@@ -125,9 +121,9 @@ export const Contact: React.FC = () => {
               )}
             </div>
 
-            {/* Subtle Helper Text */}
+            {/* Helper Text */}
             <p className="text-xs text-[#929397]/70 font-mono">
-              Click the email to copy it.
+              {portfolioData.contact.helperText}
             </p>
           </motion.div>
         </div>
@@ -141,7 +137,7 @@ export const Contact: React.FC = () => {
             <span>Surat, Gujarat, India</span>
           </div>
 
-          {/* Social Links & Back to Top */}
+          {/* Social Links */}
           <div className="flex items-center gap-6 sm:gap-8 font-medium">
             {portfolioData.contact.socialLinks.map((link) => (
               <a
@@ -160,17 +156,6 @@ export const Contact: React.FC = () => {
                 )}
               </a>
             ))}
-
-            {/* Back to top button */}
-            <button
-              type="button"
-              onClick={scrollToTop}
-              className="hover:text-[#F1F0EC] transition-colors flex items-center gap-1.5 focus:outline-none"
-              aria-label="Back to top of page"
-            >
-              <span>Back to top</span>
-              <ArrowUp size={13} />
-            </button>
           </div>
         </div>
       </div>

@@ -6,6 +6,8 @@ import { portfolioData } from '@/data/portfolio';
 import { fadeInUp } from '@/lib/animations';
 
 export const Experience: React.FC = () => {
+  const { experience } = portfolioData;
+
   return (
     <section
       id="experience"
@@ -20,7 +22,7 @@ export const Experience: React.FC = () => {
           viewport={{ once: true, margin: '-50px' }}
           className="text-xs font-mono tracking-widest text-[#929397] uppercase mb-6 md:mb-8"
         >
-          {portfolioData.experience.eyebrow}
+          {experience.eyebrow}
         </motion.div>
 
         {/* Section Heading */}
@@ -31,12 +33,12 @@ export const Experience: React.FC = () => {
           viewport={{ once: true, margin: '-50px' }}
           className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-[#F1F0EC] leading-[1.12] tracking-tight mb-14 md:mb-20"
         >
-          {portfolioData.experience.headline}
+          {experience.headline}
         </motion.h2>
 
         {/* Timeline Entries List */}
         <div className="border-t border-[#303236]">
-          {portfolioData.experience.entries.map((entry, index) => (
+          {experience.entries.map((entry, index) => (
             <motion.div
               key={entry.company}
               variants={fadeInUp}
@@ -65,23 +67,23 @@ export const Experience: React.FC = () => {
                 </div>
               </div>
 
-              {/* Description */}
+              {/* Summary */}
               <div className="mt-4 max-w-2xl">
                 <p className="text-sm sm:text-base text-[#929397] leading-relaxed font-normal">
-                  {entry.description}
+                  {entry.summary}
                 </p>
               </div>
 
-              {/* Highlights (Resume bullet points) */}
-              {entry.highlights && entry.highlights.length > 0 && (
-                <ul className="mt-4 space-y-2 max-w-2xl">
-                  {entry.highlights.map((h, i) => (
+              {/* Bullets */}
+              {entry.bullets && entry.bullets.length > 0 && (
+                <ul className="mt-5 space-y-2.5 max-w-2xl">
+                  {entry.bullets.map((bullet, i) => (
                     <li
                       key={i}
-                      className="flex items-baseline gap-2.5 text-xs sm:text-sm text-[#929397]"
+                      className="flex items-start gap-2.5 text-xs sm:text-sm text-[#929397]"
                     >
                       <span className="w-1.5 h-1.5 rounded-full bg-[#AFA4FF]/70 shrink-0 mt-1.5" />
-                      <span className="leading-relaxed">{h}</span>
+                      <span className="leading-relaxed">{bullet}</span>
                     </li>
                   ))}
                 </ul>

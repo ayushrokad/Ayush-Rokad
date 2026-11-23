@@ -50,7 +50,7 @@ export const Header: React.FC = () => {
         }`}
       >
         <div className="max-w-content mx-auto h-full px-5 md:px-16 flex items-center justify-between">
-          {/* Logo */}
+          {/* Logo / Brand */}
           <Link
             href="/"
             className="text-xs md:text-sm font-medium tracking-[0.14em] text-[#F1F0EC] hover:text-white transition-colors uppercase select-none"
@@ -96,12 +96,6 @@ export const Header: React.FC = () => {
 
           {/* Mobile Menu Button */}
           <div className="flex items-center gap-3 md:hidden">
-            <a
-              href={portfolioData.navigation.cta.href}
-              className="inline-flex items-center justify-center px-3.5 py-1.5 rounded-full text-xs font-medium bg-[#F1F0EC] text-[#111315]"
-            >
-              Talk
-            </a>
             <button
               type="button"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
