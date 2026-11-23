@@ -25,8 +25,8 @@ const config: Config = {
         },
       },
       fontFamily: {
-        serif: ['"Cormorant Garamond"', 'Georgia', 'serif'],
-        sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
+        serif: ['var(--font-cormorant)', '"Cormorant Garamond"', 'Georgia', 'serif'],
+        sans: ['var(--font-inter)', 'Inter', 'system-ui', '-apple-system', 'sans-serif'],
       },
       maxWidth: {
         content: '1320px',

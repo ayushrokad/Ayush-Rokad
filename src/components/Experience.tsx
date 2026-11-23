@@ -1,9 +1,6 @@
-'use client';
-
 import React from 'react';
-import { motion } from 'framer-motion';
 import { portfolioData } from '@/data/portfolio';
-import { fadeInUp } from '@/lib/animations';
+import { ScrollReveal } from '@/components/ui/ScrollReveal';
 
 export const Experience: React.FC = () => {
   const { experience } = portfolioData;
@@ -15,43 +12,31 @@ export const Experience: React.FC = () => {
     >
       <div className="max-w-content mx-auto px-5 md:px-16">
         {/* Eyebrow */}
-        <motion.div
-          variants={fadeInUp}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: '-50px' }}
-          className="text-xs font-mono tracking-widest text-[#929397] uppercase mb-6 md:mb-8"
-        >
-          {experience.eyebrow}
-        </motion.div>
+        <ScrollReveal>
+          <div className="text-xs font-mono tracking-widest text-[#929397] uppercase mb-6 md:mb-8">
+            {experience.eyebrow}
+          </div>
+        </ScrollReveal>
 
         {/* Section Heading */}
-        <motion.h2
-          variants={fadeInUp}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: '-50px' }}
-          className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-[#F1F0EC] leading-[1.12] tracking-tight mb-14 md:mb-20"
-        >
-          {experience.headline}
-        </motion.h2>
+        <ScrollReveal delay={0.05}>
+          <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-[#F1F0EC] leading-[1.12] tracking-tight mb-14 md:mb-20">
+            {experience.headline}
+          </h2>
+        </ScrollReveal>
 
         {/* Timeline Entries List */}
         <div className="border-t border-[#303236]">
           {experience.entries.map((entry, index) => (
-            <motion.div
+            <ScrollReveal
               key={entry.company}
-              variants={fadeInUp}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: '-40px' }}
-              transition={{ delay: index * 0.1 }}
-              className="group py-10 md:py-14 border-b border-[#303236] transition-colors duration-300"
+              delay={index * 0.08}
+              className="group py-10 md:py-14 border-b border-[#303236] transition-colors duration-[200ms]"
             >
               <div className="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-8 items-baseline">
                 {/* Company Name & Role (7 cols) */}
                 <div className="md:col-span-7 space-y-1.5">
-                  <h3 className="font-serif text-2xl sm:text-3xl text-[#F1F0EC] group-hover:text-white transition-colors">
+                  <h3 className="font-serif text-2xl sm:text-3xl text-[#F1F0EC] group-hover:text-white transition-colors duration-[200ms]">
                     {entry.company}
                   </h3>
                   <div className="inline-block text-sm text-[#AFA4FF] font-medium tracking-wide">
@@ -59,9 +44,9 @@ export const Experience: React.FC = () => {
                   </div>
                 </div>
 
-                {/* Period (5 cols, right aligned on desktop) */}
+                {/* Period */}
                 <div className="md:col-span-5 md:text-right">
-                  <span className="font-mono text-xs sm:text-sm text-[#929397] tracking-wider uppercase inline-block py-1 px-3 rounded-full border border-[#303236]/60 bg-[#191B1E]/40">
+                  <span className="font-mono text-xs sm:text-sm text-[#929397] tracking-wider uppercase inline-block py-1 px-3 rounded-full border border-[#303236]/60 bg-[#191B1E]/40 group-hover:border-[#AFA4FF]/40 transition-colors duration-[200ms]">
                     {entry.period}
                   </span>
                 </div>
@@ -88,7 +73,7 @@ export const Experience: React.FC = () => {
                   ))}
                 </ul>
               )}
-            </motion.div>
+            </ScrollReveal>
           ))}
         </div>
       </div>
