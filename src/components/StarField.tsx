@@ -19,88 +19,152 @@ export const StarField: React.FC = () => {
 
   useEffect(() => {
     const canvas = canvasRef.current;
-    if (!canvas) return;
+    const container = canvas?.parentElement;
+    const context = canvas?.getContext('2d');
 
-    const ctx = canvas.getContext('2d');
-    if (!ctx) return;
+    if (!canvas || !container || !context) return;
 
-    // Check prefers-reduced-motion
-    const prefersReducedMotion = window.matchMedia(
-      '(prefers-reduced-motion: reduce)'
-    ).matches;
+    const motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+    let prefersReducedMotion = motionQuery.matches;
+    let isInView = true;
+    let isTabVisible = document.visibilityState === 'visible';
+    let frameId: number | null = null;
+    let width = 0;
+    let height = 0;
+    let pixelRatio = 1;
+    let previousTime = 0;
 
-    let animationFrameId: number;
-    let width = (canvas.width = canvas.parentElement?.offsetWidth || window.innerWidth);
-    let height = (canvas.height = canvas.parentElement?.offsetHeight || window.innerHeight);
-
-    // Number of particles: restrained density
-    const particleCount = Math.floor((width * height) / 18000);
-    const count = Math.min(Math.max(particleCount, 35), 70);
-
-    const particles: Particle[] = Array.from({ length: count }, () => {
-      const baseAlpha = 0.12 + Math.random() * 0.35;
-      return {
-        x: Math.random() * width,
-        y: Math.random() * height,
-        size: 0.8 + Math.random() * 1.4,
-        baseAlpha,
-        alpha: baseAlpha,
-        twinkleSpeed: 0.0015 + Math.random() * 0.002,
-        twinkleOffset: Math.random() * Math.PI * 2,
-        vx: (Math.random() - 0.5) * 0.08,
-        vy: -0.02 - Math.random() * 0.06, // subtle upward drift
-      };
-    });
-
-    const handleResize = () => {
-      if (!canvas || !canvas.parentElement) return;
-      width = canvas.width = canvas.parentElement.offsetWidth;
-      height = canvas.height = canvas.parentElement.offsetHeight;
+    const particleCount = () => {
+      const estimated = Math.floor((width * height) / 26000);
+      return Math.min(Math.max(estimated, 24), 48);
     };
 
-    window.addEventListener('resize', handleResize);
+    const particles: Particle[] = [];
 
-    let lastTime = performance.now();
+    const resize = () => {
+      width = container.clientWidth || window.innerWidth;
+      height = container.clientHeight || window.innerHeight;
+      pixelRatio = Math.min(window.devicePixelRatio || 1, 1.5);
 
-    const render = (time: number) => {
-      ctx.clearRect(0, 0, width, height);
+      canvas.width = Math.round(width * pixelRatio);
+      canvas.height = Math.round(height * pixelRatio);
+      context.setTransform(pixelRatio, 0, 0, pixelRatio, 0, 0);
 
-      particles.forEach((p) => {
-        if (!prefersReducedMotion) {
-          // Slow drift
-          p.x += p.vx;
-          p.y += p.vy;
+      const desiredCount = particleCount();
+      while (particles.length < desiredCount) {
+        const baseAlpha = 0.12 + Math.random() * 0.25;
+        particles.push({
+          x: Math.random() * width,
+          y: Math.random() * height,
+          size: 0.7 + Math.random() * 1.1,
+          baseAlpha,
+          alpha: baseAlpha,
+          twinkleSpeed: 0.0008 + Math.random() * 0.001,
+          twinkleOffset: Math.random() * Math.PI * 2,
+          vx: (Math.random() - 0.5) * 0.035,
+          vy: -0.012 - Math.random() * 0.035,
+        });
+      }
+      if (particles.length > desiredCount) particles.length = desiredCount;
 
-          if (p.y < 0) p.y = height;
-          if (p.x < 0) p.x = width;
-          if (p.x > width) p.x = 0;
-
-          // Gentle sinusoidal twinkle
-          p.alpha =
-            p.baseAlpha +
-            Math.sin(time * p.twinkleSpeed + p.twinkleOffset) * 0.15;
-        }
-
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(241, 240, 236, ${Math.max(0.05, Math.min(0.65, p.alpha))})`;
-        ctx.fill();
+      particles.forEach((particle) => {
+        particle.x = Math.min(particle.x, width);
+        particle.y = Math.min(particle.y, height);
       });
 
-      if (!prefersReducedMotion) {
-        animationFrameId = requestAnimationFrame(render);
+      draw(performance.now(), false);
+    };
+
+    const draw = (time: number, animate: boolean) => {
+      context.clearRect(0, 0, width, height);
+
+      const frameScale = previousTime
+        ? Math.min((time - previousTime) / 16.67, 2)
+        : 1;
+
+      particles.forEach((particle) => {
+        if (animate) {
+          particle.x += particle.vx * frameScale;
+          particle.y += particle.vy * frameScale;
+
+          if (particle.y < 0) particle.y = height;
+          if (particle.x < 0) particle.x = width;
+          if (particle.x > width) particle.x = 0;
+
+          particle.alpha =
+            particle.baseAlpha +
+            Math.sin(time * particle.twinkleSpeed + particle.twinkleOffset) * 0.1;
+        }
+
+        context.beginPath();
+        context.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
+        context.fillStyle = `rgba(241, 240, 236, ${Math.max(0.06, Math.min(0.48, particle.alpha))})`;
+        context.fill();
+      });
+
+      previousTime = time;
+    };
+
+    const stop = () => {
+      if (frameId !== null) {
+        cancelAnimationFrame(frameId);
+        frameId = null;
+      }
+      previousTime = 0;
+    };
+
+    const tick = (time: number) => {
+      frameId = null;
+      draw(time, true);
+      if (canAnimate()) frameId = requestAnimationFrame(tick);
+    };
+
+    const canAnimate = () =>
+      !prefersReducedMotion && isInView && isTabVisible;
+
+    const syncAnimation = () => {
+      if (canAnimate()) {
+        if (frameId === null) frameId = requestAnimationFrame(tick);
+      } else {
+        stop();
+        draw(performance.now(), false);
       }
     };
 
-    if (prefersReducedMotion) {
-      render(0);
-    } else {
-      animationFrameId = requestAnimationFrame(render);
-    }
+    const handleMotionChange = (event: MediaQueryListEvent) => {
+      prefersReducedMotion = event.matches;
+      syncAnimation();
+    };
+
+    const handleVisibilityChange = () => {
+      isTabVisible = document.visibilityState === 'visible';
+      syncAnimation();
+    };
+
+    const resizeObserver = new ResizeObserver(resize);
+    resizeObserver.observe(container);
+
+    const intersectionObserver = new IntersectionObserver(
+      ([entry]) => {
+        isInView = entry.isIntersecting;
+        syncAnimation();
+      },
+      { threshold: 0 }
+    );
+    intersectionObserver.observe(canvas);
+
+    motionQuery.addEventListener('change', handleMotionChange);
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+
+    resize();
+    syncAnimation();
 
     return () => {
-      window.removeEventListener('resize', handleResize);
-      if (animationFrameId) cancelAnimationFrame(animationFrameId);
+      stop();
+      resizeObserver.disconnect();
+      intersectionObserver.disconnect();
+      motionQuery.removeEventListener('change', handleMotionChange);
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
     };
   }, []);
 
