@@ -292,7 +292,7 @@ export const portfolioData = {
     email: "ayushrokad@gmail.com",
     helperText: "Click to copy my email.",
     copyright: "© 2026 Ayush Rokad",
-    resumeFileName: "ayush-rokad-product-designer-resume.pdf",
+    resumeFileName: "Ayush_Rokad_Resume.pdf",
     socialLinks: [
       {
         label: "LinkedIn",
@@ -306,7 +306,7 @@ export const portfolioData = {
       },
       {
         label: "Resume (PDF)",
-        href: "/ayush-rokad-product-designer-resume.pdf",
+        href: "/Ayush_Rokad_Resume.pdf",
         isExternal: true,
       },
     ] as SocialLink[],
