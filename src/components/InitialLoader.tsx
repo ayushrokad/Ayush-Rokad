@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, type FC } from 'react';
 
 const MIN_DISPLAY_MS = 620;
 const MAX_WAIT_MS = 1_250;
@@ -13,7 +13,7 @@ const keyRows = [
   { x: 43, y: 85, count: 9 },
 ];
 
-export const InitialLoader: React.FC = () => {
+export const InitialLoader: FC = () => {
   const [isVisible, setIsVisible] = useState(true);
   const [isLeaving, setIsLeaving] = useState(false);
 
