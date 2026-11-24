@@ -64,3 +64,36 @@ body {
     scroll-behavior: auto !important;
   }
 }
+
+
+/* Editorial initial loader */
+.initial-loader {
+  contain: layout paint;
+}
+
+.initial-loader__keyboard {
+  transform-origin: 50% 50%;
+  animation: initial-loader-float 5.8s ease-in-out infinite;
+}
+
+.initial-loader__progress {
+  transform: scaleX(0.04);
+  animation: initial-loader-progress 680ms cubic-bezier(0.23, 1, 0.32, 1) forwards;
+}
+
+@keyframes initial-loader-float {
+  0%, 100% { transform: translate3d(0, 0, 0); }
+  50% { transform: translate3d(0, -4px, 0); }
+}
+
+@keyframes initial-loader-progress {
+  to { transform: scaleX(1); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .initial-loader__keyboard,
+  .initial-loader__progress {
+    animation: none !important;
+    transform: none;
+  }
+}
