@@ -138,7 +138,7 @@ export const Contact: React.FC = () => {
           </div>
 
           {/* Social Links */}
-          <div className="flex items-center gap-6 sm:gap-8 font-medium">
+          <div className="flex items-center gap-6 sm:gap-8 font-medium" suppressHydrationWarning>
             {portfolioData.contact.socialLinks.map((link) => (
               <a
                 key={link.label}

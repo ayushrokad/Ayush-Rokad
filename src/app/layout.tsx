@@ -78,7 +78,10 @@ const jsonLd = {
     addressRegion: 'Gujarat',
     addressCountry: 'India',
   },
-  sameAs: ['https://www.linkedin.com/in/ayushrokad/'],
+  sameAs: [
+    'https://www.linkedin.com/in/ayushrokad/',
+    'https://github.com/ayushrokad/Ayush-Rokad',
+  ],
   knowsAbout: [
     'UI/UX Design',
     'Product Design',

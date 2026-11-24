@@ -132,15 +132,33 @@ export const Header: React.FC = () => {
             ))}
           </div>
 
-          <div className="pt-8 border-t border-[#303236]">
-            <p className="text-xs text-[#929397] mb-2">Get in touch</p>
-            <a
-              href={`mailto:${portfolioData.contact.email}`}
-              className="text-sm text-[#AFA4FF] hover:underline"
-            >
-              {portfolioData.contact.email}
-            </a>
-            <p className="text-[11px] text-[#929397]/60 mt-4">
+          <div className="pt-8 border-t border-[#303236] space-y-4">
+            <div>
+              <p className="text-xs text-[#929397] mb-1">Get in touch</p>
+              <a
+                href="#contact"
+                onClick={closeMobileMenu}
+                className="text-sm text-[#AFA4FF] hover:underline"
+              >
+                {portfolioData.contact.email}
+              </a>
+            </div>
+
+            <div className="flex items-center gap-5 text-xs font-medium text-[#929397]">
+              {portfolioData.contact.socialLinks.map((link) => (
+                <a
+                  key={link.label}
+                  href={link.href}
+                  target={link.isExternal ? '_blank' : undefined}
+                  rel={link.isExternal ? 'noopener noreferrer' : undefined}
+                  className="hover:text-[#F1F0EC] transition-colors"
+                >
+                  {link.label}
+                </a>
+              ))}
+            </div>
+
+            <p className="text-[11px] text-[#929397]/60">
               Surat, Gujarat, India · Open to opportunities
             </p>
           </div>

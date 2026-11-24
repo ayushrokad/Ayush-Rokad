@@ -300,6 +300,11 @@ export const portfolioData = {
         isExternal: true,
       },
       {
+        label: "GitHub",
+        href: "https://github.com/ayushrokad/Ayush-Rokad",
+        isExternal: true,
+      },
+      {
         label: "Resume (PDF)",
         href: "/ayush-rokad-product-designer-resume.pdf",
         isExternal: true,
